@@ -6,3 +6,4 @@
 !/log/.keep
 /tmp
 /spring/*.pid
+/config/initializers/setup_mail.rb
