@@ -1,9 +1,12 @@
 # Used University Text Book
 
-Run Bundle install
+### How to run it on your local machine
+
+Run **Bundle install**
 
 Create setup_mail.rb in config/initializers and add the following lines:
 
+```ruby
 ActionMailer::Base.delivery_method = :smtp
 ActionMailer::Base.smtp_settings = {
 	address:'smtp.sendgrid.net',
@@ -14,8 +17,10 @@ ActionMailer::Base.smtp_settings = {
 	domain: 'heroku.com',
 	enable_starttls_auto: true
 }
-
-start server with rails server
+```
+Run **rails server** to start the server on port 3000
 
 
 [ ![Codeship Status for yuanxue68/Used-Book](https://codeship.com/projects/ba052990-56a9-0133-5c51-5ebc52a48109/status?branch=master)](https://codeship.com/projects/109413)
+
+[Yuan Xue](https://github.com/yuanxue68), [Aditya Sanghi](https://github.com/adityasan92)
