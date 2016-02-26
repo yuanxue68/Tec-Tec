@@ -1,10 +1,13 @@
-<div class="banner-container">
-	<div class="banner">
-		<div class="banner-body">
-			<h1 class="banner-title">Used Book</h1>
-			<h6>Buy Used Text Books For Low Price</h6>
-		</div>
-	</div>
+<div class="flex  full-vertical flex-middle">
+  <div>
+    <h1>Tec Tec</h1>
+    <h6>Buy Used Text Books For Low Price</h6>
+    <div>
+      <%= link_to "Log in", new_user_session_path, class: "btn btn-default" %>
+      <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-default" %>
+      <%= link_to "Login with Facbook", user_omniauth_authorize_path(:facebook), class: "btn btn-primary" %>
+    </div>
+  </div>
 </div>
 
 
