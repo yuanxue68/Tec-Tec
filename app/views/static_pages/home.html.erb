@@ -3,9 +3,13 @@
     <h1>Tec Tec</h1>
     <h6>Buy Used Text Books For Low Price</h6>
     <div>
-      <%= link_to "Log in", new_user_session_path, class: "btn btn-default" %>
-      <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-default" %>
-      <%= link_to "Login with Facbook", user_omniauth_authorize_path(:facebook), class: "btn btn-primary" %>
+      <% unless user_signed_in? %>
+        <%= link_to "Log in", new_user_session_path, class: "btn btn-default" %>
+        <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-default" %>
+        <%= link_to "Login with Facbook", user_omniauth_authorize_path(:facebook), class: "btn btn-primary" %>
+      <% else %>
+        <%= link_to "Explore Now", auctions_path, class: "btn btn-primary" %>
+      <% end %>
     </div>
   </div>
 </div>

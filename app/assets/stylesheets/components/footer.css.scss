@@ -1,0 +1,15 @@
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  small {
+    float: left;
+  }
+  ul {
+    float: right;
+    list-style: none;
+    li {
+      float: left;
+      margin-left: 15px;
+    }
+  }
+}
