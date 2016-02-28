@@ -1,4 +1,9 @@
 /* form */
+.datetime-select { 
+  display: inline-block;
+  width: 15%;
+}
+
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
   border-radius: 5px;

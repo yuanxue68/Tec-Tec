@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <h2>New Auctions</h2>
+    <h5>Create a new Auction BY filling out the form below</h5>
+    <%= form_for(@auction) do |f| %>
+      <%= render'shared/error_messages', object: f.object %>
+
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: "form-control", autofocus: true%>
+      </div>
+ 
+      <div class="form-group">
+        <%= f.label :description %>
+        <%= f.text_area :description, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :course_code %>
+        <%= f.text_field :course_code, class: "form-control"%>
+      </div>
+      <div class="form-group">
+        <%= f.label :school%>
+        <%= f.text_field :school, class:"form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :starting_price%>
+        <%= f.text_field :starting_price, class: "form-control"%>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :buyout_price%>
+        <%= f.text_field :buyout_price, class: "form-control"%>
+      </div>
+      <div class="form-group">
+        <%= f.label :start_time%></br>
+        <%= f.datetime_select :start_time, {ampm:true}, class: "form-control datetime-select"%>
+      </div>
+      <div class="form-group">
+        <%= f.label :end_time%></br>
+        <%= f.datetime_select :end_time, {ampm: true}, class: "form-control datetime-select"%>
+      </div>
+      <%= f.submit "create", class: "col-md-2 col-s-12 btn btn-success"%>
+  
+    <% end %>
+  </div>
+</div>
