@@ -25,4 +25,3 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 end
-Status API Training Shop Blog About Pricing

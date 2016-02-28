@@ -11,10 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160225032625) do
+ActiveRecord::Schema.define(version: 20160226234532) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "auctions", force: :cascade do |t|
+    t.string   "name",                         null: false
+    t.text     "description"
+    t.string   "course_code"
+    t.string   "school"
+    t.float    "starting_price", default: 0.0
+    t.float    "buyout_price"
+    t.datetime "start_time",                   null: false
+    t.datetime "end_time",                     null: false
+    t.integer  "owner_id"
+    t.integer  "winner_id"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "auctions", ["end_time"], name: "index_auctions_on_end_time", using: :btree
+  add_index "auctions", ["owner_id", "end_time"], name: "index_auctions_on_owner_id_and_end_time", using: :btree
+  add_index "auctions", ["owner_id"], name: "index_auctions_on_owner_id", using: :btree
+  add_index "auctions", ["winner_id"], name: "index_auctions_on_winner_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -39,4 +59,6 @@ ActiveRecord::Schema.define(version: 20160225032625) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "auctions", "users", column: "owner_id"
+  add_foreign_key "auctions", "users", column: "winner_id"
 end
