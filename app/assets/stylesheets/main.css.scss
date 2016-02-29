@@ -2,8 +2,11 @@
 @import "bootstrap";
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 @import "layout/flex_layout";
+@import "layout/column.css.scss";
 @import "components/footer";
 @import "components/form";
+
+
 .container { 
   padding-top: 70px;
 }

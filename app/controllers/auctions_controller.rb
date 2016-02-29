@@ -2,6 +2,7 @@ class AuctionsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :destroy]
   
   def index
+    @auctions = Auction.paginate(page: params[:page]).per_page(12)
   end
 
   def create
@@ -19,6 +20,7 @@ class AuctionsController < ApplicationController
   end
 
   def show
+    @auction = Auction.find(params[:id])
   end
 
   def destroy

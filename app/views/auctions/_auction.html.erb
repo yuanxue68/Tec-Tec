@@ -1,0 +1,23 @@
+<%=link_to auction do %>
+  <div class="col-md-4 col-container">
+    <div id="auction-<%= auction.id %>" class="card">
+      <div class="card-image">
+        <%= image_tag "auction-icon.png" %>
+      </div>
+      
+    <div class="card-info"> 
+      <div class="card-title"><%= auction.name %></div>
+        <div class="user"><%= auction.owner.email%></div>
+        <span class="timestamp">
+          Ends in <%= distance_of_time_in_words_to_now(auction.end_time)%>
+        </span>
+        <div>
+          <span>Starting <span class="dark-text">$<%=auction.starting_price %></span></span>
+          <% if auction.buyout_price %>
+            <span>Buyout <span class="dark-text">$<%=auction.buyout_price%></span></span>
+          <% end %>    
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -1,3 +1,16 @@
-<div>
-  hey
+<div class="row">
+  <div class="col-md-2">  
+    <%=render "aside" %>
+  </div>
+  <div class="col-md-10 ">
+    <div class="col-md-12 center-text">
+      <%= will_paginate @auctions, renderer: BootstrapPagination::Rails %>
+    </div>
+    <ul> 
+      <%= render @auctions %>
+    </ul>
+    <div class="col-md-12 center-text">
+      <%= will_paginate @auctions, renderer: BootstrapPagination::Rails %>
+    </div>
+  </div>
 </div>
