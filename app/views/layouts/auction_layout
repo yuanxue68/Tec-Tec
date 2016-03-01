@@ -5,7 +5,7 @@
 			<li class="<%=is_active?("history")%>"><%=link_to "History", history_auction_path%></li>
 			<li class="<%=is_active?("comments")%>"><%=link_to "Comments", comments_auction_path%></li> 
 		</ul>
-		<% yield %> 
+		<%= yield %> 
 	</div>
  	<%=render "auction_aside" %>  
 <% end %>

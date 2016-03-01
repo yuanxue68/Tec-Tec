@@ -1,3 +1,33 @@
-<div>
-  auction aside
+<div class="col-md-2">
+  <div>
+    <% if false %>
+      <%= image_tag(@auction.image) %>
+    <% else %>
+      <%= image_tag("auction-icon.png")%>
+    <% end %>
+  </div>
+  <div>
+    <h3><%= @auction.starting_price%></h3>
+    <div>
+      Starting Price
+    </div>
+  </div>
+  <div>
+    <h3><%= @auction.buyout_price%></h3>
+    <div>
+      Buyout Price
+    </div>
+  </div>
+  <div>
+    <h3><%= time_ago_in_words @auction.start_time%></h3>
+    <div>
+      Time Passed
+    </div>
+  </div>
+  <div>
+    <h3><%= distance_of_time_in_words_to_now @auction.end_time%></h3>
+    <div>
+      Time Remaining
+    </div>
+  </div>
 </div>

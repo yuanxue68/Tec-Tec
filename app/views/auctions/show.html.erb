@@ -1,10 +1,15 @@
 <div>
-  <%= render "title"%>
-  <div class="row">
-    <div class="col-md-8 col-md-offset-1">
-    </div>
-    
-    <div class="col-md-2">
-    </div>
-  </div>
+  <button class="btn btn-lg btn-success pull-right">Place Bid</button>
+  <h5>Auction Name</h5>
+  <%= @auction.name%>
+  <h5>Description</h5>
+  <%= @auction.description%>
+  <h5>Course Code</h5>
+  <%= @auction.course_code%>
+  <h5>School</h5>
+  <%= @auction.school%>
+  <h5>Start Time</h5>
+  <%= @auction.start_time.strftime("%Y-%m-%d %H-%M-%S")%>
+  <h5> End Time</h5>
+  <%= @auction.end_time.strftime("%Y-%m-%d %H-%M-%S")%>
 </div>
