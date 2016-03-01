@@ -21,11 +21,21 @@ class AuctionsController < ApplicationController
 
   def show
     @auction = Auction.find(params[:id])
+    render layout: "auction_layout"
   end
 
   def destroy
   end
 
+  def history
+    @auction = Auction.find(params[:id])
+    render layout: "auction_layout"
+  end
+
+  def comments
+    @auction = Auction.find(params[:id])
+    render layout: "auction_layout"
+  end
   private 
   
   def auction_params

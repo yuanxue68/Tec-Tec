@@ -1,0 +1,13 @@
+<% content_for :content do %>
+	<div class= "col-md-8 col-md-offset-1">
+		<ul class="nav nav-tabs">
+			<li class="<%=is_active?("show")%>"><%=link_to "Info", auction_path(@auction)%></li>
+			<li class="<%=is_active?("history")%>"><%=link_to "History", history_auction_path%></li>
+			<li class="<%=is_active?("comments")%>"><%=link_to "Comments", comments_auction_path%></li> 
+		</ul>
+		<% yield %> 
+	</div>
+ 	<%=render "auction_aside" %>  
+<% end %>
+
+<%=render template: "layouts/application"%>
