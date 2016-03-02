@@ -1,4 +1,5 @@
-# Used University Text Book (IN PROGRESS)
+# Tec Tec (IN PROGRESS)
+site for auctioning used book
 
 ### How to run it on your local machine
 ######After you clone the repository:
