@@ -3,7 +3,7 @@ require 'spec_helper'
 
 RSpec.describe Auction, type: :model do
   it "has a valid factory" do
-    auction = FactoryGirl.create(:auction)
+    auction = FactoryGirl.build(:auction)
     expect(auction).to be_valid
   end
 

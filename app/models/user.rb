@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   has_many :auctions, dependent: :destroy, foreign_key: 'owner_id' 
   has_many :auctions_won, class_name: 'Auction', foreign_key: 'winner_id' 
-
+  has_many :bids, dependent: :destroy
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email

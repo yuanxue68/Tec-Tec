@@ -1,5 +1,5 @@
 <div>
-  <button class="btn btn-lg btn-success pull-right">Place Bid</button>
+  <%=link_to "Place Bid", new_auction_bid_path(@auction), class:"btn btn-success pull-right"%>
   <h5>Auction Name</h5>
   <%= @auction.name%>
   <h5>Description</h5>

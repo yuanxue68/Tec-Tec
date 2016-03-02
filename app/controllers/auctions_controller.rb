@@ -29,6 +29,7 @@ class AuctionsController < ApplicationController
 
   def history
     @auction = Auction.find(params[:id])
+    @bids = @auction.latest_bids
     render layout: "auction_layout"
   end
 
