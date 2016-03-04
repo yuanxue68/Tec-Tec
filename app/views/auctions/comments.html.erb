@@ -1,0 +1,12 @@
+<div>
+  <div id="comments">
+		<%= render @comments%>
+	</div>
+  </br>
+  <%=form_for [@auction, @auction.comments.new], remote:true do |f| %>
+    <fieldset>
+      <%= f.text_area :content, rows:2, placeholder: "Leave a comment..." %>
+      <%= f.submit 'Post Comment', class: "btn btn-primary"%>
+    </fieldset>
+  <% end %>
+</div>

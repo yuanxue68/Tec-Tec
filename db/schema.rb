@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160301042636) do
+ActiveRecord::Schema.define(version: 20160302060647) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,17 @@ ActiveRecord::Schema.define(version: 20160301042636) do
   add_index "bids", ["auction_id"], name: "index_bids_on_auction_id", using: :btree
   add_index "bids", ["created_at"], name: "index_bids_on_created_at", using: :btree
   add_index "bids", ["user_id"], name: "index_bids_on_user_id", using: :btree
+
+  create_table "comments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "auction_id"
+    t.string   "content",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "comments", ["auction_id"], name: "index_comments_on_auction_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

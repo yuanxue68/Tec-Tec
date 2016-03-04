@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       get :history, :comments
     end
     resources :bids, only: [:new, :create]
+    resources :comments, only: [:create, :destroy]
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

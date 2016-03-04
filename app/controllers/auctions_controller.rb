@@ -2,9 +2,12 @@ class AuctionsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :destroy]
   
   def index
-    @auctions = Auction.paginate(page: params[:page]).per_page(12)
+    if  params[:order] == "ending"
+      @auctions = Auction.order_by_ending.paginate(page: params[:page]).per_page(15)
+    else
+      @auctions = Auction.order_by_created_at.paginate(page: params[:page]).per_page(15)
+    end
   end
-
   def create
     @auction = current_user.auctions.build(auction_params)
     if(@auction.save)
@@ -35,6 +38,7 @@ class AuctionsController < ApplicationController
 
   def comments
     @auction = Auction.find(params[:id])
+    @comments = @auction.comments
     render layout: "auction_layout"
   end
   private 

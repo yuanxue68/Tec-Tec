@@ -3,10 +3,19 @@
 }
 
 .side-nav {
+  text-align: center;
+  display: block;
   padding:15px;
-  border-top: solid 1px #e9e9e9;
-  border-bottom: solid 1px #e9e9e9;
-  border-left: solid 1px #e9e9e9;
-  border-top-left-radius:25px;
-  border-bottom-left-radius:25px;
+  color: #00a8f2;
+}
+
+.side-nav:hover {
+  color: #000;
+  border: solid 1px #e9e9e9;
+  border-radius:5px;
+}
+  
+.side-nav.active{
+  border: solid 1px #00a8f2;
+  border-radius:5px;
 }

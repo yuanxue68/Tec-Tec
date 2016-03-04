@@ -9,7 +9,7 @@
       <div class="card-title"><%= auction.name %></div>
         <div class="user"><%= auction.owner.email%></div>
         <span class="timestamp">
-          Ends in <%= distance_of_time_in_words_to_now(auction.end_time)%>
+          Ends in <%=distance_of_time_in_words_to_now(auction.end_time)%>
         </span>
         <div>
           <span>Starting <span class="dark-text">$<%=auction.starting_price %></span></span>

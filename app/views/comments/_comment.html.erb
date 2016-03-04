@@ -1,0 +1,15 @@
+<div class="comment" id="<%= 'comment-'+comment.id.to_s %>">
+  <div>
+    <span><%=comment.user.email%></span>
+    <span><%=time_ago_in_words(comment.created_at)%></span>
+    <% if is_owner(comment) %>
+      <%=link_to auction_comment_path(@auction,comment), 
+        remote:true, method: :delete, class: "close comment-close" do%>
+        <span>&times;</span>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="comment-content">
+    <%= comment.content %>
+  </div>
+</div>

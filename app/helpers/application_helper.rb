@@ -1,5 +1,5 @@
 module ApplicationHelper
-  def is_active?(page_name)
-    "active" if params[:action] == page_name
+  def is_active?(key, page_name)
+    "active" if params[key] == page_name
 	end
 end

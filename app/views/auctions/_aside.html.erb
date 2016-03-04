@@ -1,8 +1,4 @@
 <div class="side-navs">
-  <div class="side-nav">
-    Recently Posted
-  </div>
-  <div class="side-nav">
-    Ending Soon
-  </div>
+  <%= link_to "Recently Posted", auctions_path, class:"side-nav #{is_active?(:order, nil)}"%>
+  <%= link_to "Ending Soon", auctions_path(order: "ending"), class:"side-nav #{is_active?(:order,'ending')}"%>
 </div>
