@@ -37,4 +37,3 @@ rails server
 ###Build Status
 [ ![Codeship Status for yuanxue68/Used-Book](https://codeship.com/projects/ba052990-56a9-0133-5c51-5ebc52a48109/status?branch=master)](https://codeship.com/projects/109413)
 
-[Yuan Xue](https://github.com/yuanxue68), [Aditya Sanghi](https://github.com/adityasan92)
