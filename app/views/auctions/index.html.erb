@@ -2,7 +2,16 @@
   <div class="col-md-2">  
     <%=render "aside" %>
   </div>
+    
   <div class="col-md-10 ">
+    <%= form_tag auctions_path, class: "row", method: 'GET' do %>
+      <div class="col-md-8 col-md-offset-1">
+        <%= text_field_tag :search, params[:search], class:"form-control", 
+          placeholder:"search by auction name..."%>
+      </div>
+      <%= hidden_field_tag :order, params[:order] %>
+      <%= submit_tag 'Search', name: nil, class:"btn btn-primary col-md-2"%>
+    <% end %>
     <div class="col-md-12 center-text">
       <%= will_paginate @auctions, renderer: BootstrapPagination::Rails %>
     </div>

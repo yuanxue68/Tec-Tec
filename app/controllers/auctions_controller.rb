@@ -2,12 +2,10 @@ class AuctionsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :destroy]
   
   def index
-    if  params[:order] == "ending"
-      @auctions = Auction.order_by_ending.paginate(page: params[:page]).per_page(15)
-    else
-      @auctions = Auction.order_by_created_at.paginate(page: params[:page]).per_page(15)
-    end
+    @auctions = Auction.ordered_search(params[:order], params[:search])
+      .paginate(page: params[:page]).per_page(15)
   end
+  
   def create
     @auction = current_user.auctions.build(auction_params)
     if(@auction.save)

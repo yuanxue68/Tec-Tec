@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  before_action :correct_user, only: :destroy
+
   def create
     @auction = Auction.find(params[:auction_id])
     @auction.comments.build(
@@ -12,7 +14,6 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = Comment.find(params[:id])
     @comment.destroy
     render json: {id: params[:id]}
   end
@@ -20,5 +21,10 @@ class CommentsController < ApplicationController
   private
     def comment_params
       params.require(:comment).permit(:content)
+    end
+
+    def correct_user
+      @comment = current_user.comments.find(params[:id])
+      redirect_to root_path if @comment.nil?
     end
 end

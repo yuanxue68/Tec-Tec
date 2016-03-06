@@ -8,7 +8,23 @@ class Auction < ActiveRecord::Base
   
   scope :order_by_ending, ->{order(:end_time)}
   scope :order_by_created_at, ->{order(created_at: :desc)}  
-  
+
+  def self.ordered_search(order, search)
+    if order && !order.empty?
+      if search && !search.empty?
+        where("name like ?", "%#{search}%").order_by_ending.includes(:owner)
+      else
+        order_by_ending.includes(:owner)
+      end
+    else
+      if search && !search.empty?
+        where("name like ?", "%#{search}%").order_by_created_at.includes(:owner)
+      else
+        order_by_created_at.includes(:owner)
+      end
+    end
+  end
+
   def place_bid (bidder, bid_amount)
     bids.build(user: bidder, bid_amount: bid_amount)  
   end
