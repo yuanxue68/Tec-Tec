@@ -19,17 +19,18 @@ gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 #authentication gem
-gem 'devise'
-gem 'omniauth-facebook'
-#authorization level gem
-gem 'pundit'
+gem 'devise', '3.5.2'
+gem 'omniauth-facebook', '3.0.0'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'will_paginate', '~> 3.0.6'
-gem 'will_paginate-bootstrap'
-gem "font-awesome-rails"
+gem 'will_paginate-bootstrap', '1.0.1'
+gem 'font-awesome-rails', '4.5.0.1'
+gem 'carrierwave', '0.10.0'
+gem 'mini_magick', '4.4.0'
+gem 'fog', '1.37.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

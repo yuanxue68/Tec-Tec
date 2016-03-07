@@ -1,9 +1,22 @@
 <% content_for :content do %>
+	<div class="text-center title"><%=@auction.name.titleize%></div>
 	<div class= "col-md-8 col-md-offset-1">
 		<ul class="nav nav-tabs">
-			<li class="<%=is_active?(:action, "show")%>"><%=link_to "Info", auction_path(@auction)%></li>
-			<li class="<%=is_active?(:action, "history")%>"><%=link_to "History", history_auction_path%></li>
-			<li class="<%=is_active?(:action, "comments")%>"><%=link_to "Comments", comments_auction_path%></li> 
+			<li class="<%=is_active?('auctions', :action, 'show')%>">
+				<%=link_to auction_path(@auction) do %>
+					<i class="fa fa-info-circle"></i> Info
+				<% end %>
+			</li>
+			<li class="<%=is_active?('auctions', :action, "history")%>">
+				<%=link_to history_auction_path do %>
+					<i class="fa fa-calendar"></i> History
+				<% end %>
+			</li>
+			<li class="<%=is_active?('auctions', :action, "comments")%>">
+				<%=link_to comments_auction_path do %>
+					<i class="fa fa-comments-o"></i> Comments
+				<% end %>
+			</li> 
 		</ul>
 		<%= yield %> 
 	</div>

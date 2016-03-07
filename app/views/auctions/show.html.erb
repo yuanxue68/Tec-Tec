@@ -1,15 +1,46 @@
-<div>
-  <%=link_to "Place Bid", new_auction_bid_path(@auction), class:"btn btn-success pull-right"%>
-  <h5>Auction Name</h5>
-  <%= @auction.name%>
-  <h5>Description</h5>
-  <%= @auction.description%>
-  <h5>Course Code</h5>
-  <%= @auction.course_code%>
-  <h5>School</h5>
-  <%= @auction.school%>
-  <h5>Start Time</h5>
-  <%= @auction.start_time.strftime("%Y-%m-%d %H-%M-%S")%>
-  <h5> End Time</h5>
-  <%= @auction.end_time.strftime("%Y-%m-%d %H-%M-%S")%>
-</div>
+<div class="auction-content">
+   
+  <div class="title-sm">Description</div>
+  <div class="well">
+    <% if @auction.description.empty? %>
+      No Description Avaliable
+    <% else %>
+      <%= @auction.description%>
+    <% end %>
+  </div>
+
+  <div class="title-sm">Picture</div>
+  <% if @auction.picture? %>
+    <div class="upload-preview center-block">
+      <%= image_tag(@auction.picture.url) %>
+    </div>
+  <% else %>
+    <div class="well">
+      No Picture Avaliable
+    </div>
+  <% end %>
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      Other Information
+    </div>
+    <table class="table">
+      <tr class="info">
+        <td>Course Code:</td>
+        <td><%= @auction.course_code %></td>
+      </tr>
+      <tr>
+        <td>School:</td>
+        <td><%= @auction.school %></td>
+      </tr>
+      <tr>
+        <td>Start Time:</td>
+        <td><%= @auction.start_time.in_time_zone("EST").strftime('Date: %Y-%m-%d, Time: %H-%M') %></td>
+      </tr>
+      <tr>
+        <td>End Time:</td>
+        <td><%= @auction.end_time.in_time_zone("EST").strftime('Date: %Y-%m-%d, Time: %H-%M') %></td>
+      </tr>
+    </table>
+  </div>
+  </div>

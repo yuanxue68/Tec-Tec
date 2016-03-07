@@ -5,7 +5,10 @@
 @import "layout/column.css.scss";
 @import "components/footer";
 @import "components/form";
-
+@import "components/button";
+@import "components/nav";
+@import "components/card";
+@import "auctions";
 
 .container { 
   padding-top: 70px;

@@ -42,7 +42,8 @@ class AuctionsController < ApplicationController
   private 
   
   def auction_params
-    params.require(:auction).permit(:name, :description, :course_code, :school, :starting_price, :buyout_price, :start_time, :end_time)
+    params[:auction][:start_time] = Time.now
+    params.require(:auction).permit(:name, :description, :course_code, :school, :starting_price, :buyout_price, :start_time, :end_time, :picture)
   end
 end
 

@@ -1,12 +1,22 @@
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
-    <h2>New Auctions</h2>
-    <h5>Create a new Auction by filling out the form below</h5>
-    <%= form_for(@auction) do |f| %>
+    <div class="text-center">
+      <div class="title">
+        <i class="fa fa-lightbulb-o"></i> New Auctions
+      </div>
+      <ul class="light-text">
+        <div>Create a new auction by filling out the form below</div>
+        <div>Stared fields are required fields</div>
+        <div>Remmeber, the more you fill out, the higher the chance you will find a buyer
+        <i class="fa fa-smile-o"></i>
+        </div>
+      </ul>
+    </div>
+    <%= form_for(@auction, html: {multipart: true}) do |f| %>
       <%= render'shared/error_messages', object: f.object %>
 
       <div class="form-group">
-        <%= f.label :name %>
+        <%= f.label "Name *" %>
         <%= f.text_field :name, class: "form-control", autofocus: true%>
       </div>
  
@@ -14,18 +24,29 @@
         <%= f.label :description %>
         <%= f.text_area :description, class: "form-control" %>
       </div>
+  
+      <div class="upload-preview">
+        <img/>
+      </div>
+  
+      <div class="form-group">
+        <%= f.label :picture %>
+        <%= f.file_field :picture, accept: 'image/jpeg, image/gif, image/png' %>
+        <p class="help-block"> Upload an image of your book </p>
+      </div>
 
       <div class="form-group">
         <%= f.label :course_code %>
         <%= f.text_field :course_code, class: "form-control"%>
       </div>
+
       <div class="form-group">
         <%= f.label :school%>
         <%= f.text_field :school, class:"form-control" %>
       </div>
 
       <div class="form-group">
-        <%= f.label :starting_price%>
+        <%= f.label "Starting price *"%>
         <%= f.text_field :starting_price, class: "form-control"%>
       </div>
 
@@ -33,12 +54,9 @@
         <%= f.label :buyout_price%>
         <%= f.text_field :buyout_price, class: "form-control"%>
       </div>
+
       <div class="form-group">
-        <%= f.label :start_time%></br>
-        <%= f.datetime_select :start_time, {ampm:true}, class: "form-control datetime-select"%>
-      </div>
-      <div class="form-group">
-        <%= f.label :end_time%></br>
+        <%= f.label "End time *"%></br>
         <%= f.datetime_select :end_time, {ampm: true}, class: "form-control datetime-select"%>
       </div>
       <%= f.submit "create", class: "col-md-2 col-s-12 btn btn-success"%>

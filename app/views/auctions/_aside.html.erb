@@ -1,4 +1,26 @@
 <div class="side-navs">
-  <%= link_to "Recently Posted", auctions_path, class:"side-nav #{is_active?(:order, nil)}"%>
-  <%= link_to "Ending Soon", auctions_path(order: "ending"), class:"side-nav #{is_active?(:order,'ending')}"%>
+  <%= link_to auctions_path, class:"side-nav #{is_active?('auctions', :order, nil)}" do %>
+    <div>
+      <i class="fa fa-clone"></i>
+    </div>
+    <div>
+      Recently Posted
+    </div>
+  <% end %>
+  <%= link_to auctions_path(order: "ending"), class:"side-nav #{is_active?('auctions', :order,'ending')}" do %>
+    <div>
+      <i class="fa fa-clock-o"></i>
+    </div>
+    <div>
+      Ending Soon
+    </div>
+  <% end %>
+  <%= link_to auctions_path(order: "buyout_price"), class:"side-nav #{is_active?('auctions',:order,'buyout_price')}" do %>
+    <div>
+      <i class="fa fa-money"></i>
+    </div>
+    <div>
+      Lowest Buyout
+    </div>
+  <% end %>
 </div>

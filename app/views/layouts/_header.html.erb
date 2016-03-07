@@ -8,21 +8,37 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%= link_to "HOME", root_path, id: "logo", class:"navbar-brand"%>
+      <%= link_to root_path, id: "logo", class:"navbar-brand" do %>
+        <i>Tec</i> <i class="fa fa-book"></i> <i>Tec</i>
+      <% end %>
     </div>
-
     <% if user_signed_in? %>
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="account-setting">
         <ul class="nav navbar-nav navbar-right">
-          <li><%= link_to "New Auction", new_auction_path%></li>
-          <li><a href="#">Welcome Back</a></li>
+          <li class="<%= is_active?('auctions', :action, 'index') %>">
+            <%= link_to auctions_path do%>
+              <i class="fa fa-compass"></i> Explore
+            <% end %>
+          </li>
+          <li class="<%= is_active?('auctions', :action, 'new') %>">
+            <%= link_to new_auction_path do%>
+              <i class="fa fa-file-o"></i> New Auction
+            <% end %>
+          </li>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              Account <i class="fa fa-user"></i>
+              <span class="caret"></span>
+            </a>
             <ul class="dropdown-menu">
               <li><%= link_to "Account Setting", edit_user_registration_path%></li>
               <li role="separator" class="divider"></li>
-              <li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
+              <li>
+                <%= link_to destroy_user_session_path, method: :delete do%>
+                  <i class="fa fa-sign-out"></i> Sign Out
+                <% end %>
+              </li>
             </ul>
           </li>
         </ul>
@@ -30,9 +46,19 @@
     <% else %>
       <div class="collapse navbar-collapse" id="account-setting">
         <ul class="nav navbar-nav navbar-right">
-          <li><%= link_to "Sign Up", new_user_registration_path %></li>
-          <li><%= link_to "Log in", new_user_session_path %></li>
-          <li><%= link_to "Facebook Login", user_omniauth_authorize_path(:facebook) %></li>
+          <li class="<%= is_active?('devise/registrations', :action, 'new') %>">
+            <%= link_to "Sign Up", new_user_registration_path %>
+          </li>
+          <li class="<%= is_active?('devise/sessions', :action, 'new') %>">
+            <%= link_to new_user_session_path do %>
+              <i class="fa fa-sign-in"></i> Sign In
+            <% end %>
+          </li>
+          <li>
+            <%= link_to user_omniauth_authorize_path(:facebook) do %>
+              <i class="fa fa-facebook-official"></i> Facebook Sign In
+            <% end %>
+          </li>
         </ul>
       </div>
     <% end %>

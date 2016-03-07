@@ -2,22 +2,44 @@
   <div class="col-md-4 col-container">
     <div id="auction-<%= auction.id %>" class="card">
       <div class="card-image">
-        <%= image_tag "auction-icon.png" %>
+        <% if auction.picture? %>
+          <%= image_tag auction.picture.url %>
+        <% else %>
+          <%= image_tag "auction-icon.png" %>
+        <% end %>
       </div>
       
-    <div class="card-info"> 
-      <div class="card-title"><%= auction.name %></div>
-        <div class="user"><%= auction.owner.email%></div>
-        <span class="timestamp">
-          Ends in <%=distance_of_time_in_words_to_now(auction.end_time)%>
-        </span>
-        <div>
+      <div class="card-info"> 
+        <div class="card-title text-center">
+          <%= auction.name.titleize %>
+        </div>
+        <div class="user">
+          <span class="label label-warning">Sold By</span> <%= auction.owner.email%>
+        </div>
+        <div class="description">
+          <% if !auction.description.empty? %>
+            <i class="fa fa-info"></i>: <%= auction.description %>
+          <% else %>
+            <i class="fa fa-info"></i>: No description provided <i class="fa fa-frown-o"></i>
+          <% end %> 
+        </div>
+        <div class="timestamp">
+          <div>
+            Time Remaining: <span class="dark-text"><%=distance_of_time_in_words_to_now(auction.end_time)%></span>
+          </div>
+          <div class="progress">
+            <div class="progress-bar progress-bar-success" role="progressbar" style="width: <%= time_passed_in_percent(auction) %>;">
+            </div>
+          </div>
+        </div>
+        <div class="text-center">
           <span>Starting <span class="dark-text">$<%=auction.starting_price %></span></span>
           <% if auction.buyout_price %>
-            <span>Buyout <span class="dark-text">$<%=auction.buyout_price%></span></span>
+            / <span>Buyout <span class="dark-text">$<%=auction.buyout_price%></span></span>
           <% end %>    
         </div>
       </div>
+    
     </div>
   </div>
 <% end %>
