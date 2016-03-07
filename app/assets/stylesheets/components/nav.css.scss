@@ -8,7 +8,7 @@
   border-radius: 5px;
   display: block;
   padding:15px;
-  color: #00a8f2;
+  color: #ccc;
 }
 
 .side-nav:hover {
@@ -19,6 +19,7 @@
 .side-nav.active{
   border: solid 1px #00a8f2;
   background: #f0f8fc;
+  color: #00a8f2;
 }
 
 .navbar-default .navbar-nav > .active > a{
