@@ -4,6 +4,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :omniauthable, :omniauth_providers => [:facebook]
+  validates_presence_of :display_name
+  validate :picture_size
+  mount_uploader :picture, AvatarUploader 
 
   has_many :auctions, dependent: :destroy, foreign_key: 'owner_id' 
   has_many :auctions_won, class_name: 'Auction', foreign_key: 'winner_id' 
@@ -27,4 +30,12 @@ class User < ActiveRecord::Base
     end
   end
 
+  private
+
+  
+  def picture_size
+    if picture.size > 5.megabytes
+      errors.add(:picture, "should be less than 5MB")
+    end
+  end
 end

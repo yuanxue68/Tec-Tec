@@ -9,7 +9,7 @@ $(document).on "page:change", ->
     imageClass = this.width/this.height > 1 ? 'wide' : 'tall';
     $(this).addClass(imageClass)
 
-  $('#auction_picture').bind 'change', (e) ->
+  $('#auction_picture, #user_picture').bind 'change', (e) ->
     input = $(e.currentTarget)
     file = input[0].files[0]
     size_in_megabytes = file.size/1024/1024

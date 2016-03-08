@@ -14,13 +14,13 @@
           <%= auction.name.titleize %>
         </div>
         <div class="user">
-          <span class="label label-warning">Sold By</span> <%= auction.owner.email%>
+          <span class="label label-warning">Sold By</span> <%= auction.owner.display_name%>
         </div>
         <div class="description">
           <% if !auction.description.empty? %>
-            <i class="fa fa-info"></i>: <%= auction.description %>
+            <i class="fa fa-gavel"></i>: <%= auction.description %>
           <% else %>
-            <i class="fa fa-info"></i>: No description provided <i class="fa fa-frown-o"></i>
+            <i class="fa fa-gavel"></i>: No description provided <i class="fa fa-frown-o"></i>
           <% end %> 
         </div>
         <div class="timestamp">

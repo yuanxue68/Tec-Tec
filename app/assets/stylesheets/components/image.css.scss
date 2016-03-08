@@ -1,11 +1,22 @@
 .upload-preview {
-	margin-top: 15px;
-  margin-bottom: 15px;
+	padding-top: 15px;
+  padding-bottom: 15px;
   max-height: 400px;
   max-width: 400px;
+  margin: auto;
+  overflow: hidden;
 }
 
 .upload-preview img {
   width: 100%;
 	border-radius: 10px;
+}
+
+.upload-preview-sm{
+  max-height:200px;
+  max-width:200px;
+}
+
+.upload-preview-circle {
+  border-radius:50%;
 }
