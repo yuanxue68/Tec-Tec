@@ -1,5 +1,16 @@
 <div class="col-md-3">
-  
+
+  <%= render partial:'shared/profile_pic', locals:{resource: @auction.owner} %>  
+
+  <div class="info-box">
+    <%= link_to user_path(@auction.owner) do %>
+      <h3><%=@auction.owner.display_name.capitalize%></h3>
+    <% end %> 
+    <div class="light-text">
+      <i class="fa fa-user"></i> Owner
+    </div>    
+  </div>
+      
   <div class="info-box">
     <h3><%= @auction.starting_price%></h3>
     <div class="light-text">
@@ -25,7 +36,9 @@
     </div>
   </div>
 
-  <%=link_to new_auction_bid_path(@auction), class:"btn btn-success col-md-12" do %>
-    <i class="fa fa-check-circle"></i> Place Bid
+  <% if current_user %>
+    <%=link_to new_auction_bid_path(@auction), class:"btn btn-success col-md-12" do %>
+      <i class="fa fa-check-circle"></i> Place Bid
+    <% end %>
   <% end %>
 </div>

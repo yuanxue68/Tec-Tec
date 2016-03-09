@@ -1,0 +1,18 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="title text-center">
+      <i class="fa fa-money"></i> My Bids
+    </div>
+    <table class="table">
+      <tr>
+        <th>Auction Name</th>
+        <th>Auction End Time</th>
+        <th>Bid Time</th>
+        <th>Bid Amount</th>
+      </tr>
+      <% @my_bids.each do |bid| %>
+        <%= render partial:'my_bid', locals: {bid: bid} %>
+      <% end %>
+    </table>
+  </div>
+</div>

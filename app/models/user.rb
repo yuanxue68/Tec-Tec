@@ -21,7 +21,6 @@ class User < ActiveRecord::Base
     end
   end
 	
-	
 	def self.new_with_session(params, session)
     super.tap do |user|
       if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
@@ -30,6 +29,14 @@ class User < ActiveRecord::Base
     end
   end
 
+  def active_auctions
+    auctions.later_than(Time.now)
+  end
+
+  def active_bids
+    bids.where('(bids.auction_id, bids.bid_amount) in (select auctions.id, max(bids.bid_amount) from bids, auctions where bids.auction_id = auctions.id group by auctions.id)')
+    .order(created_at: :desc)
+  end  
   private
 
   

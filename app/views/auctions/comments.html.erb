@@ -3,12 +3,14 @@
 		<%= render @comments%>
 	</div>
   </br>
-  <%=form_for [@auction, @auction.comments.new], remote:true do |f| %>
-    <fieldset>
-      <%= f.text_area :content, rows:2, placeholder: "Leave a comment...", class: "form-control" %>
-      <%= button_tag type: "submit", class: "btn btn-primary btn-sm" do %>
-        Comment <i class="fa fa-comment-o"></i>
-      <% end %>
-    </fieldset>
+  <% if current_user %>
+    <%=form_for [@auction, @auction.comments.new], remote:true do |f| %>
+      <fieldset>
+        <%= f.text_area :content, rows:2, placeholder: "Leave a comment...", class: "form-control" %>
+        <%= button_tag type: "submit", class: "btn btn-primary btn-sm" do %>
+          Comment <i class="fa fa-comment-o"></i>
+        <% end %>
+      </fieldset>
+    <% end %>
   <% end %>
 </div>

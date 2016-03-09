@@ -1,0 +1,8 @@
+<div class="upload-preview upload-preview-sm upload-preview-circle">
+  <% if resource.picture.url %>
+    <%= image_tag resource.picture %>
+  <% else %>
+    <%= image_tag 'user-icon.png' %>
+  <% end %>
+</div>
+

@@ -1,0 +1,13 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="title text-center">
+      <i class="fa fa-gavel"></i> Active Auctions
+    </div>
+    <div class="row text-center">
+      <%= will_paginate @active_auctions, renderer: BootstrapPagination::Rails  %>
+    </div>
+    <%= render @active_auctions %>
+  </div>
+</div>    
+
+
