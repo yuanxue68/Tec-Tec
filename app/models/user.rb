@@ -29,10 +29,20 @@ class User < ActiveRecord::Base
     end
   end
 
+  #is there a more rails way??
+  def auctions_won
+    Auction
+    .expired
+    .joins(:bids)
+    .where("bids.user_id = ?", id)
+    .where('(bids.auction_id, bids.bid_amount) in (select auctions.id, max(bids.bid_amount) from auctions, bids where bids.auction_id = auctions.id group by auctions.id )')
+  end
+
   def active_auctions
     auctions.later_than(Time.now)
   end
 
+  #is there a more rails way??
   def active_bids
     bids.where('(bids.auction_id, bids.bid_amount) in (select auctions.id, max(bids.bid_amount) from bids, auctions where bids.auction_id = auctions.id group by auctions.id)')
     .order(created_at: :desc)

@@ -3,13 +3,25 @@ class Bid < ActiveRecord::Base
   belongs_to :auction 
   validates_presence_of :user, :auction, :bid_amount
   validates :bid_amount, numericality: {greater_than:0}
-  validate :greater_than_last
+  validate :greater_than_last, :not_owner, :auction_not_expired
 
   private
   def greater_than_last
     last_bid = auction.latest_bid ? auction.latest_bid.bid_amount : 0
-    if bid_amount && bid_amount <= last_bid
-      errors.add(:bid_amount, "should be greater than other bids")
+    if bid_amount && (bid_amount <= last_bid || bid_amount < auction.starting_price)
+      errors.add(:bid_amount, "should be greater than other bids and starting price")
+    end
+  end
+
+  def auction_not_expired
+    if auction.end_time < Time.now
+      errors.add(:auction,"can't be expired")
+    end
+  end
+
+  def not_owner
+    if auction.owner == user
+      errors.add(:user, "can't bid on his own auction")
     end
   end
 end

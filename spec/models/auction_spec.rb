@@ -4,12 +4,12 @@ require 'byebug'
 
 RSpec.describe Auction, type: :model do
   before :all do
-    user1 = FactoryGirl.build(:user, email: "test2.gmail.com")
-    user2 = FactoryGirl.build(:user, email: "test3.gmail.com")
+    @user1 = FactoryGirl.build(:user, email: "test2.gmail.com")
+    @user2 = FactoryGirl.build(:user, email: "test3.gmail.com")
     @auction_one = FactoryGirl.create(:auction, name: "auction one",
-                                      owner: user1, end_time: Time.now+2000 )
+                                      owner: @user1, end_time: Time.now+2000 )
     @auction_two = FactoryGirl.create(:auction, name: "auction two",
-                                      owner: user2, end_time: Time.now+3000)
+                                      owner: @user2, end_time: Time.now+3000)
   end
 
   it "has a valid factory" do
@@ -52,4 +52,20 @@ RSpec.describe Auction, type: :model do
   it "should be able to filter with empty string" do
     expect(Auction.ordered_search("ending","")).to be == [@auction_one, @auction_two]
   end
+
+  it "shoulde return auction that has expired" do
+    expired_auction = FactoryGirl.create(:auction, owner:@user1, end_time: Time.now-1)
+    expect(Auction.expired.first).to be == expired_auction
+  end
+
+  it "should be able to search auction by name" do
+    expect(Auction.search_by_name("one").first).to be == @auction_one
+  end
+
+  it "should be return all auction is there is no search specified" do
+    expect(Auction.search_by_name(nil).count).to be == 2
+  end
+
+
+
 end

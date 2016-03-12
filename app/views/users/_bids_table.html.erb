@@ -1,7 +1,7 @@
 <div class="panel panel-default">
   <div class="panel-body">
     <div class="title text-center">
-      <i class="fa fa-money"></i> My Bids
+      <i class="fa fa-money"></i> My Active Bids 
     </div>
     <table class="table">
       <tr>
@@ -10,9 +10,13 @@
         <th>Bid Time</th>
         <th>Bid Amount</th>
       </tr>
-      <% @my_bids.each do |bid| %>
-        <%= render partial:'my_bid', locals: {bid: bid} %>
+      <% @bids.each do |bid| %>
+        <%= render partial:'users/bid', locals:{bid:bid} %>
       <% end %>
     </table>
+
+    <div class="row text-center">
+      <%= will_paginate @bids, param_name: 'bid_page', renderer: BootstrapPagination::Rails %>
+    </div>
   </div>
 </div>

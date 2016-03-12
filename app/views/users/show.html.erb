@@ -4,10 +4,16 @@
   </div>
   <%= render partial:'shared/profile_pic', locals: {resource: @user} %>
 
-  </br>
-  <%= render 'active_auctions' %>
   <% if current_user == @user %>
-    <%= render 'my_bids'%>
+    <%= link_to history_user_path(current_user), class:"btn btn-default btn-sm" do %>
+      <i class="fa fa-archive"></i> My History
+    <% end %>
   <% end %>
+  </br>
+  </br>
+  <% if current_user == @user %>
+    <%= render 'bids_table'%>
+  <% end %>
+  <%= render 'active_auctions' %>
   <%= render 'contacts'%>
 </div>

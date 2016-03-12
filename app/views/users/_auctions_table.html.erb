@@ -1,0 +1,19 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="title text-center">
+      <i class="fa fa-gavel"></i> <%= title %> 
+    </div>
+    <table class="table">
+      <tr>
+        <th>Auction Name</th>
+        <th>End Time</th>
+      </tr>
+      <% auctions.each do |auction| %>
+        <%= render partial:'auction_row', locals:{auction: auction} %>
+      <% end %>
+    </table>
+    <div class="row text-center">
+      <%= will_paginate auctions, param_name: param_name, renderer: BootstrapPagination::Rails %>
+    </div>
+ </div>
+</div>

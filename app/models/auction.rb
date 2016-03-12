@@ -10,7 +10,15 @@ class Auction < ActiveRecord::Base
   scope :order_by_ending, ->{order(:end_time)}
   scope :order_by_created_at, ->{order(created_at: :desc)}  
   scope :order_by_buyout_price, ->{order(:buyout_price)}
+  
+  def self.later_than(time)
+    where("end_time > ?", time)
+  end
  
+  def self.expired
+    where("end_time < ?", Time.now)
+  end 
+
   def self.search_by_name(name)
     if(name && !name.empty?)
       where("name like ?", "%#{name}%")     
@@ -19,10 +27,6 @@ class Auction < ActiveRecord::Base
     end
   end
 
-  def self.later_than(time)
-    where("end_time > ?", time)
-  end
-  
   def self.ordered_search(order, search)
     case 
     when order == "ending" 

@@ -1,0 +1,11 @@
+<% if @auction.end_time < Time.now %>
+  <% if @auction.bids.last && @auction.bids.last.user == current_user %>
+    <div class="alert alert-success text-center" role="alert">
+      <i class="fa fa-thumbs-up"></i> Congratulations! You won this auction!
+    </div>
+  <% else %>
+    <div class="alert alert-warning text-center" role="alert">
+      <i class="fa fa-exclamation-triangle"></i> This auction has already ended
+    </div>
+  <% end %> 
+<% end %>

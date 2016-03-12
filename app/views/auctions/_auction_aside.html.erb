@@ -17,12 +17,14 @@
       <i class="fa fa-usd"></i> Starting Price
     </div>
   </div>
-  <div class="info-box">
-    <h3><%= @auction.buyout_price%></h3>
-    <div class="light-text">
-      <i class="fa fa-money"></i> Buyout Price
+  <% if @auction.buyout_price %>
+    <div class="info-box">
+      <h3><%= @auction.buyout_price%></h3>
+      <div class="light-text">
+        <i class="fa fa-money"></i> Buyout Price
+      </div>
     </div>
-  </div>
+  <% end %>
   <div class="info-box">
     <h3><%= time_ago_in_words @auction.start_time%></h3>
     <div class="light-text">
@@ -30,9 +32,19 @@
     </div>
   </div>
   <div class="info-box">
+    <% if !@auction.bids.last %>
+      <h3>$0.00</h3>
+    <% else %>
+      <h3 class="success-text">$<%=@auction.bids.last.bid_amount%></h3>
+    <% end %>  
+    <div class="light-text">
+      <i class="fa fa-sort-asc"></i> Highest bid
+    </div>
+  </div>
+  <div class="info-box">
     <h3><%= distance_of_time_in_words_to_now @auction.end_time%></h3>
     <div class="light-text">
-      <i class="fa fa-clock-o"></i> Time Remaining
+      <i class="fa fa-clock-o"></i> Distance To End Time
     </div>
   </div>
 

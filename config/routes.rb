@@ -8,7 +8,11 @@ Rails.application.routes.draw do
   get '/contact', to: 'static_pages#contact'
 
   devise_for :users, :controllers => { omniauth_callbacks: "users/omniauth_callbacks", registrations: 'registrations' }
-  resources :users, only: [:show]
+  resources :users, only: [:show] do
+		member do
+			get :history
+		end
+	end
 
   resources :auctions do
     member do
