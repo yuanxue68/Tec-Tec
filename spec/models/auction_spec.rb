@@ -54,7 +54,8 @@ RSpec.describe Auction, type: :model do
   end
 
   it "shoulde return auction that has expired" do
-    expired_auction = FactoryGirl.create(:auction, owner:@user1, end_time: Time.now-1)
+    expired_auction = FactoryGirl.build(:auction, owner:@user1, end_time: Time.now-1)
+    expired_auction.save(validate: false)
     expect(Auction.expired.first).to be == expired_auction
   end
 
@@ -66,6 +67,9 @@ RSpec.describe Auction, type: :model do
     expect(Auction.search_by_name(nil).count).to be == 2
   end
 
-
+  it "should not be valid if end time is in the past" do
+    auction = FactoryGirl.build(:auction, end_time: Time.now-1)
+    expect(auction).to_not be_valid
+  end
 
 end

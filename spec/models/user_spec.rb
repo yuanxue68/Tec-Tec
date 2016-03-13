@@ -21,12 +21,13 @@ RSpec.describe User, type: :model do
   it "should return non expired auctions the user has listed" do
     owner = FactoryGirl.create(:user)
     active_auction = FactoryGirl.create(:auction, owner: owner, end_time: Time.now+5000)
-    expired_auction = FactoryGirl.create(:auction, owner: owner, end_time: Time.now-5000)
+    expired_auction = FactoryGirl.build(:auction, owner: owner, end_time: Time.now-5000)
+    expired_auction.save(validate: false)
     expect(owner.active_auctions.first).to be == active_auction
 
   end
 
-  it "should return the the user has won" do
+  it "should return auctions the user has won" do
     seller = FactoryGirl.create(:user, email:"seller@gmail.com")
     buyer = FactoryGirl.create(:user)
     auction_won = FactoryGirl.create(:auction, owner:seller)
@@ -34,8 +35,8 @@ RSpec.describe User, type: :model do
     bid = FactoryGirl.create(:bid, user:buyer, auction:auction_won)
     auction_won.end_time = Time.now - 1
     auction_lost.end_time = Time.now - 1
-    auction_won.save
-    auction_lost.save
+    auction_won.save(validate: false)
+    auction_lost.save(validate: false)
     expect(buyer.auctions_won.first).to be ==  auction_won
   end
 

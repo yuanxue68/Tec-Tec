@@ -3,7 +3,7 @@ class Auction < ActiveRecord::Base
   has_many :bids, dependent: :destroy
   has_many :comments, dependent: :destroy  
   validates_presence_of :owner, :name, :start_time, :end_time
-  validate :picture_size
+  validate :picture_size, :end_time_in_future
   mount_uploader :picture, AuctionUploader
 
   scope :order_by_ending, ->{order(:end_time)}
@@ -50,6 +50,12 @@ class Auction < ActiveRecord::Base
   end
 
   private 
+
+  def end_time_in_future
+    if(!end_time||end_time <= Time.now)
+      errors.add(:end_time, "can not be in the past")
+    end
+  end
 
   def picture_size
     if picture.size > 5.megabytes
