@@ -1,0 +1,27 @@
+<div class="row comment" id="<%='review-'+review.id.to_s%>">
+  <% if is_review_giver(review) %>
+    <%=link_to user_review_path(@user,review), 
+      remote:true, method: :delete, class: "close comment-close" do%>
+      <span>&times;</span>
+    <% end %>
+  <% end %>
+
+
+  <div class="col-md-3 text-center">
+    <% if review.giver.picture.url %>
+      <%= link_to user_path(review.giver), class:"thumb thumb-round" do %>
+        <%= image_tag review.giver.picture.thumb.url %>
+      <% end %> 
+    <% else %>
+      <%= link_to user_path(review.giver), class:"thumb thumb-round" do %>
+        <%= image_tag 'user-thumb.png' %>
+      <% end %>
+    <div><%=review.giver.display_name.capitalize%></div>
+    <% end %>
+
+  </div>
+  <div class="col-md-9 comment-content light-text"> 
+    <div><%=time_ago_in_words(review.created_at)%> ago</div>
+    <%= review.content%>
+  </div>
+</div>

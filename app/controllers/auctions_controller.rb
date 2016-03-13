@@ -30,13 +30,13 @@ class AuctionsController < ApplicationController
 
   def history
     @auction = Auction.find(params[:id])
-    @bids = @auction.latest_bids
+    @bids = @auction.latest_bids.includes(:user)
     render layout: "auction_layout"
   end
 
   def comments
     @auction = Auction.find(params[:id])
-    @comments = @auction.comments
+    @comments = @auction.comments.includes(:user)
     render layout: "auction_layout"
   end
   private 

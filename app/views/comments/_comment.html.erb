@@ -1,15 +1,26 @@
-<div class="comment" id="<%= 'comment-'+comment.id.to_s %>">
-  <div>
-    <span><%=comment.user.email%></span>
-    <span><%=time_ago_in_words(comment.created_at)%></span>
-    <% if is_owner(comment) %>
-      <%=link_to auction_comment_path(@auction,comment), 
-        remote:true, method: :delete, class: "close comment-close" do%>
-        <span>&times;</span>
+<div class="row comment" id="<%= 'comment-'+comment.id.to_s %>"> 
+  <% if is_owner(comment) %>
+    <%=link_to auction_comment_path(@auction,comment), 
+      remote:true, method: :delete, class: "close comment-close" do%>
+      <span>&times;</span>
+    <% end %>
+  <% end %>
+
+  <div class="col-md-3 text-center">
+    <% if comment.user.picture.url %>
+      <%= link_to user_path(comment.user), class: "thumb thumb-round" do %>
+        <%= image_tag comment.user.picture.thumb.url %>
+      <% end %>
+    <% else %>
+      <%= link_to user_path(comment.user), class: "thumb thumb-round" do %>
+        <%= image_tag 'user-thumb.png' %>
       <% end %>
     <% end %>
+    <div><%=comment.user.display_name.capitalize%></div>
   </div>
-  <div class="comment-content">
+
+  <div class="col-md-9 comment-content light-text" >
+    <div><%= time_ago_in_words(comment.created_at)%> ago </div>
     <%= comment.content %>
   </div>
 </div>

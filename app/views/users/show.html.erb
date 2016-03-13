@@ -9,6 +9,10 @@
       <i class="fa fa-archive"></i> My History
     <% end %>
   <% end %>
+
+  <%= link_to user_reviews_path(@user), class: "btn btn-default btn-sm" do %>
+    <i class="fa fa-commenting-o"></i> User Reviews
+  <% end %>
   </br>
   </br>
   <% if current_user == @user %>

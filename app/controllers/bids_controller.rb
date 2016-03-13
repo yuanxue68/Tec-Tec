@@ -3,6 +3,7 @@ class BidsController < ApplicationController
 
   def new
     @auction = Auction.find(params[:auction_id])
+    @last_bid = @auction.bids.last
     @bid = @auction.bids.build
   end
 

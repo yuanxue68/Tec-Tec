@@ -1,0 +1,27 @@
+<div class="col-md-8 col-md-offset-2">
+  <div class="title text-center">
+    <i class="fa fa-commenting-o"></i> Review for <%= @user.display_name.capitalize%>
+  </div>
+
+  <%= link_to user_path(@user), class: "btn btn-default btn-sm" do %>
+    <i class="fa fa-long-arrow-left"></i> Back
+  <% end %>
+  </br>
+  </br>
+  <div id="reviews" class="comments">
+    <%= render @reviews %>
+  </div>
+  <% if current_user != @user %>
+    <%= form_for [@user, @user.reviews_received.new], remote:true do |f| %>
+      <fieldset>
+        <%= f.text_area :content, row:2, placeholder: "Leave a review...", class: "form-control", id:"review_body" %>
+        <%= button_tag type: "submit", class: "btn btn-primary btn-sm" do %>
+          Post Review <i class="fa fa-star-o"></i>
+        <% end %>
+      </fieldset>
+    <% end %>
+  <% end %>
+</div>
+
+
+

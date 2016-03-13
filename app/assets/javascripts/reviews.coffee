@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $(document).on "page:change", ->
 
-  $('#comments').on 'click', '.comment-close', (e)->
+  $('#reviews').on 'click', '.comment-close', (e)->
     e.preventDefault()
     e.stopPropagation()
     $.ajax
@@ -11,4 +11,4 @@ $(document).on "page:change", ->
       url: $(this).attr("href")
       dataType: "json"
       success: (data)->
-        $("#comment-"+data.id).fadeOut()
+        $("#review-"+data.id).fadeOut()

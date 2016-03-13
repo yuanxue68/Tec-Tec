@@ -20,3 +20,14 @@
 .upload-preview-circle {
   border-radius:50%;
 }
+
+.thumb {
+  display:inline-block;
+  width: 80px;
+  height: 80px;
+  overflow:hidden;
+}
+
+.thumb-round {
+  border-radius: 50%;
+}

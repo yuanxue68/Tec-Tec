@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160308010305) do
+ActiveRecord::Schema.define(version: 20160312230739) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,17 @@ ActiveRecord::Schema.define(version: 20160308010305) do
   add_index "comments", ["auction_id"], name: "index_comments_on_auction_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
+  create_table "reviews", force: :cascade do |t|
+    t.string   "content",     null: false
+    t.integer  "giver_id"
+    t.integer  "receiver_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "reviews", ["giver_id"], name: "index_reviews_on_giver_id", using: :btree
+  add_index "reviews", ["receiver_id"], name: "index_reviews_on_receiver_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -87,4 +98,6 @@ ActiveRecord::Schema.define(version: 20160308010305) do
 
   add_foreign_key "auctions", "users", column: "owner_id"
   add_foreign_key "auctions", "users", column: "winner_id"
+  add_foreign_key "reviews", "users", column: "giver_id"
+  add_foreign_key "reviews", "users", column: "receiver_id"
 end

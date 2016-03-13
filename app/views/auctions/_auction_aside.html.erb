@@ -34,6 +34,8 @@
   <div class="info-box">
     <% if !@auction.bids.last %>
       <h3>$0.00</h3>
+    <% elsif @last_bid %>
+      <h3 class="success-text">$<%=@last_bid.bid_amount%></h3>
     <% else %>
       <h3 class="success-text">$<%=@auction.bids.last.bid_amount%></h3>
     <% end %>  

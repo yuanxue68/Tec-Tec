@@ -3,9 +3,11 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .comment {
   padding: 10px;
-  border-bottom: solid 1px #DDDDDD;
+  border: solid 1px #f6f6f6;
 }
 
-.comment-content {
-  padding-top:10px;
+.comments .comment:nth-child(2n) {
+  background-color: #f9f9f9;
 }
+
+

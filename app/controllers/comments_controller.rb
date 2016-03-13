@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!, only: [:create, :destroy]
   before_action :correct_user, only: :destroy
 
   def create
@@ -6,11 +7,11 @@ class CommentsController < ApplicationController
     @auction.comments.build(
       content: comment_params[:content], user: current_user, auction: @auction
     )
-    if @auction.save
-      render json:@auction.comments.last
-    else
-      render json:@auction.errors, status: 400
-    end 
+    @auction.save
+    respond_to do |format|
+      format.html {redirect_to @auction}
+      format.js
+    end
   end
 
   def destroy

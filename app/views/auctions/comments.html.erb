@@ -1,12 +1,12 @@
 <div>
-  <div id="comments">
+  <div id="comments" class="comments">
 		<%= render @comments%>
 	</div>
   </br>
   <% if current_user %>
     <%=form_for [@auction, @auction.comments.new], remote:true do |f| %>
       <fieldset>
-        <%= f.text_area :content, rows:2, placeholder: "Leave a comment...", class: "form-control" %>
+        <%= f.text_area :content, rows:2, placeholder: "Leave a comment...", class: "form-control", id:"comment_body" %>
         <%= button_tag type: "submit", class: "btn btn-primary btn-sm" do %>
           Comment <i class="fa fa-comment-o"></i>
         <% end %>

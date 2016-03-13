@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   resources :users, only: [:show] do
 		member do
 			get :history
-		end
+    end
+    resources :reviews, only: [:create, :destroy, :index]
 	end
 
   resources :auctions do
