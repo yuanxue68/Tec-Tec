@@ -1,5 +1,5 @@
 class EndtimeWork
-  include Sidekiq::worker
+  include Sidekiq::Worker
 
   def perform(auction_id)
   end
