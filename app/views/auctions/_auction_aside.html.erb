@@ -1,7 +1,7 @@
-<div class="col-md-3">
-
-  <%= render partial:'shared/profile_pic', locals:{resource: @auction.owner} %>  
-
+<div class="col-md-3 text-sm-center">
+	<div class="hidden-xs hiden-sm">
+  	<%= render partial:'shared/profile_pic', locals:{resource: @auction.owner} %>  
+	</div>
   <div class="info-box">
     <%= link_to user_path(@auction.owner) do %>
       <h3><%=@auction.owner.display_name.capitalize%></h3>
@@ -50,7 +50,7 @@
     </div>
   </div>
 
-  <% if current_user %>
+  <% if current_user && @auction.end_time >Time.now %>
     <%=link_to new_auction_bid_path(@auction), class:"btn btn-success col-md-12" do %>
       <i class="fa fa-check-circle"></i> Place Bid
     <% end %>
