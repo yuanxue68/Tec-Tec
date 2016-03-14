@@ -8,5 +8,4 @@
 /spring/*.pid
 /config/initializers/setup_mail.rb
 public/uploads
-Gemfile.lock
 spec/examples.txt
