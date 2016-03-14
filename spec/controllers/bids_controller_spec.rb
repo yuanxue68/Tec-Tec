@@ -23,6 +23,7 @@ RSpec.describe BidsController, type: :controller do
       allow(request.env['warden']).to receive(:authenticate!).and_return(@user)
       allow(controller).to receive(:bid_params).and_return({bid_amount:3})
       allow(controller).to receive(:current_user).and_return(@user) 
+      allow(controller).to receive(:create_notification).and_return(true)
       allow(Auction).to receive(:find).and_return(@auction) 
       allow(@auction).to receive(:place_bid).and_return(true)
       allow(@auction).to receive(:save).and_return(true)

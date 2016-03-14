@@ -9,8 +9,10 @@ class BidsController < ApplicationController
 
   def create
     @auction = Auction.find(params[:auction_id])
+    @old_winner = @auction.latest_bid && @auction.latest_bid.user
     @bid = @auction.place_bid(current_user, bid_params[:bid_amount]) 
     if(@auction.save)
+      create_notification @auction, @old_winner
       flash[:success] = "Bid successfully placed"
       redirect_to history_auction_path @auction
     else
@@ -19,6 +21,22 @@ class BidsController < ApplicationController
   end
 
   private
+  def create_notification(auction, old_winner)
+    if auction.owner != current_user
+    Notification.create(user: auction.owner,
+                        notified_by: current_user,
+                        auction: auction,
+                        notice_type: "new bid")
+    end
+
+    if old_winner && old_winner != current_user
+    Notification.create(user:old_winner,
+                        notified_by: current_user,
+                        auction: auction,
+                        notice_type: "bid over")
+
+    end
+  end
 
   def bid_params
     params.require(:bid).permit(:bid_amount)

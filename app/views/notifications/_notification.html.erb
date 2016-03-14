@@ -1,0 +1,27 @@
+<div class="notification">
+  <% case notification.notice_type
+     when "bid over" %>
+    <%= link_to notification.notified_by.display_name, user_path(notification.notified_by)%> has bid over your previous bid on 
+    <%= link_to auction_path notification.auction do %>
+      <i class="fa fa-gavel"></i> <%=notification.auction.name %>
+    <% end %>
+
+  <% when "new bid" %>
+    <%= link_to notification.notified_by.display_name, user_path(notification.notified_by)%> has bid on your auction 
+    <%= link_to auction_path notification.auction do %>
+      <i class="fa fa-gavel"></i> <%=notification.auction.name %>
+    <% end %>
+
+  <% when "new comment" %>
+    <%= link_to notification.notified_by.display_name, user_path(notification.notified_by)%> has left a new comment on your auction
+    <%= link_to auction_path notification.auction do %>
+      <i class="fa fa-gavel"></i> <%=notification.auction.name %>
+    <% end %>
+
+  <% when "new review" %>
+    <%= link_to notification.notified_by.display_name, user_path(notification.notified_by)%> has left a new <%=link_to 'review', user_reviews_path(notification.user)%> for you
+  <% end %>
+  
+  <span class="pull-right"><%=distance_of_time_in_words_to_now(notification.created_at)%> ago </span>
+
+</div>

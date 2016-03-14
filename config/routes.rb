@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 			get :history
     end
     resources :reviews, only: [:create, :destroy, :index]
+    resources :notifications, only: [:index]
 	end
 
   resources :auctions do

@@ -50,7 +50,7 @@
     </div>
   </div>
 
-  <% if current_user && @auction.end_time >Time.now %>
+  <% if current_user && @auction.end_time >Time.now && @auction.owner != current_user %>
     <%=link_to new_auction_bid_path(@auction), class:"btn btn-success col-md-12" do %>
       <i class="fa fa-check-circle"></i> Place Bid
     <% end %>

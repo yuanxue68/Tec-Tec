@@ -17,10 +17,15 @@ class ReviewsController < ApplicationController
       giver: current_user,
       receiver: @user
     )
-    @user.save
-    respond_to do |format|
-      format.html {redirect_to user_reviews_path(@user)}
-      format.js
+    if @user.save
+      create_notification @user
+      respond_to do |format|
+        format.html {redirect_to user_reviews_path(@user)}
+        format.js
+      end
+    else 
+      flash[:failure] = "an error has occured while saving review"
+      redirect_to user_reviews_path @user
     end
   end
 
@@ -28,6 +33,14 @@ class ReviewsController < ApplicationController
     @review = Review.find(params[:id])
     @review.destroy
     render json: {id: params[:id]}
+  end
+
+  private
+  
+  def create_notification(user)
+    Notification.create(user: user,
+                        notified_by: current_user,
+                        notice_type: "new review")
   end
 
 end

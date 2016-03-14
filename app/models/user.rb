@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   has_many :reviews_written, class_name:'Review', dependent: :destroy, foreign_key: 'giver_id'
   has_many :reviews_received, class_name:'Review', dependent: :destroy, foreign_key: 'receiver_id'
+  has_many :notifications, dependent: :destroy
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -48,8 +49,12 @@ class User < ActiveRecord::Base
     bids.where('(bids.auction_id, bids.bid_amount) in (select auctions.id, max(bids.bid_amount) from bids, auctions where bids.auction_id = auctions.id group by auctions.id)')
     .order(created_at: :desc)
   end  
-  private
 
+  def unread_notification_count
+    notifications.where(read: false).count
+  end
+
+  private
   
   def picture_size
     if picture.size > 5.megabytes

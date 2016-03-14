@@ -1,0 +1,20 @@
+<div class="col-md-8 col-md-offset-2">
+  <div class="title text-center">
+    <i class="fa fa-bell-o"></i> My Notifications
+  </div>
+  </br>
+  <% if @notifications.length > 0 %>
+    <div id="notifications">
+      <%= render @notifications %>
+    </div>
+  <% else %>
+    <div class="well">
+      You do not have any notification yet
+    </div>
+  <% end %>
+  
+  <div class="row center-text endless-scroll">
+    <%= will_paginate @notifications, renderer: BootstrapPagination::Rails %>
+  </div>
+  
+</div>

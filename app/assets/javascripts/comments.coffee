@@ -18,7 +18,7 @@ $(document).on "page:change", ->
       console.log($(window).scrollTop())
       console.log $(document).height()
       url = $('.pagination .next').children(":first").attr('href')
-      if url && $(window).scrollTop() > $(document).height() - 650
+      if url && $(window).scrollTop() > $(document).height() - $(window).height() - 50
         $('.pagination').html('</br><i style="font-size: 40px;" class="fa fa-spinner fa-pulse"></i>')
         $.getScript(url)
     $(window).scroll()

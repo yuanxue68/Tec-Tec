@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160312230739) do
+ActiveRecord::Schema.define(version: 20160314014606) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,20 @@ ActiveRecord::Schema.define(version: 20160312230739) do
   add_index "comments", ["auction_id"], name: "index_comments_on_auction_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
+  create_table "notifications", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "notified_by_id"
+    t.integer  "auction_id"
+    t.string   "notice_type",                  null: false
+    t.string   "read",           default: "f"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "notifications", ["auction_id"], name: "index_notifications_on_auction_id", using: :btree
+  add_index "notifications", ["notified_by_id"], name: "index_notifications_on_notified_by_id", using: :btree
+  add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
+
   create_table "reviews", force: :cascade do |t|
     t.string   "content",     null: false
     t.integer  "giver_id"
@@ -98,6 +112,9 @@ ActiveRecord::Schema.define(version: 20160312230739) do
 
   add_foreign_key "auctions", "users", column: "owner_id"
   add_foreign_key "auctions", "users", column: "winner_id"
+  add_foreign_key "notifications", "auctions"
+  add_foreign_key "notifications", "users"
+  add_foreign_key "notifications", "users", column: "notified_by_id"
   add_foreign_key "reviews", "users", column: "giver_id"
   add_foreign_key "reviews", "users", column: "receiver_id"
 end
