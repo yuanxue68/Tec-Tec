@@ -12,7 +12,7 @@ class BidsController < ApplicationController
     @bid = @auction.place_bid(current_user, bid_params[:bid_amount]) 
     if(@auction.save)
       flash[:success] = "Bid successfully placed"
-      redirect_to @auction
+      redirect_to history_auction_path @auction
     else
       render "new"
     end

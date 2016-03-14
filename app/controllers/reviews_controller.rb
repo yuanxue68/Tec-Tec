@@ -2,8 +2,12 @@ class ReviewsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :destroy]
   
   def index
-    @user = User.includes(:reviews_received).find(params[:user_id])
-    @reviews = @user.reviews_received.includes(:giver)
+    @user = User.find(params[:user_id])
+    @reviews = @user.reviews_received.order(created_at: :desc).includes(:giver).paginate(page:params[:page]).per_page(15)
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def create

@@ -1,2 +1,2 @@
-$("#reviews").append("<%=j render @user.reviews_received.last %>").children(":last").hide().slideDown(500)
+$("#reviews").prepend("<%=j render @user.reviews_received.last %>").children(":first").hide().slideDown(500)
 $("#review_body").val("")

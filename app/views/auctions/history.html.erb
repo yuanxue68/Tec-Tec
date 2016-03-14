@@ -9,4 +9,8 @@
     </tr>
     <%= render @bids %>
   </table>
+<div class="row center-text">
+    <%= will_paginate @bids, renderer: BootstrapPagination::Rails %>
+</div>
+
 </div>

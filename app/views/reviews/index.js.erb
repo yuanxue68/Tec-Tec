@@ -1,0 +1,6 @@
+$('#reviews').append("<%= j render(@reviews) %>");
+<% if @reviews.next_page %>
+  $('pagination').replaceWith('<%=j will_paginate @reviews, renderer: BootstrapPagination::Rails %>');
+<% else %>
+  $('.pagination').remove();
+<% end %>

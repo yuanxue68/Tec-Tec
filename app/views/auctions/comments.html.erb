@@ -2,7 +2,10 @@
   <div id="comments" class="comments">
 		<%= render @comments%>
 	</div>
-  </br>
+  <div class="row center-text">
+    <%= will_paginate @comments, renderer: BootstrapPagination::Rails %>
+  </div>
+  </br> 
   <% if current_user %>
     <%=form_for [@auction, @auction.comments.new], remote:true do |f| %>
       <fieldset>

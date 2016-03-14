@@ -30,15 +30,16 @@ class AuctionsController < ApplicationController
 
   def history
     @auction = Auction.find(params[:id])
-    @bids = @auction.latest_bids.includes(:user)
+    @bids = @auction.latest_bids.includes(:user).paginate(page: params[:page]).per_page(25)
     render layout: "auction_layout"
   end
 
   def comments
     @auction = Auction.find(params[:id])
-    @comments = @auction.comments.includes(:user)
+    @comments = @auction.comments.order(created_at: :desc).includes(:user).paginate(page: params[:page]).per_page(25)
     render layout: "auction_layout"
   end
+  
   private 
   
   def auction_params

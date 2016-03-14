@@ -9,12 +9,12 @@
     </div>
     </br>
     <%= form_tag auctions_path, class: "row", method: 'GET' do %>
-      <div class="col-md-8 col-md-offset-1">
+      <div class="col-md-8 col-md-offset-1 col-sm-8 col-sm-offset-1 col-xs-8 col-xs-offset-1">
         <%= text_field_tag :search, params[:search], class:"form-control", 
           placeholder:"search by auction name..."%>
       </div>
       <%= hidden_field_tag :order, params[:order] %>
-      <%= button_tag(type: 'submit', class:"btn btn-primary btn-sm col-md-2", name: nil) do%>
+      <%= button_tag(type: 'submit', class:"btn btn-primary btn-sm col-md-2 col-sm-2 col-xs-2", name: nil) do%>
         <i class="fa fa-search"></i> Search
       <% end %>
     <% end %>
