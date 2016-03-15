@@ -31,7 +31,7 @@ class CommentsController < ApplicationController
 
     def create_notification(auction)
       return if auction.owner == current_user
-      Notification.notify_new_comment auction
+      Notification.notify_new_comment(auction, current_user)
     end
 
     def correct_user

@@ -18,7 +18,7 @@ class ReviewsController < ApplicationController
       receiver: @user
     )
     if @user.save
-      Notification.notify_new_review @user
+      Notification.notify_new_review(@user, current_user)
       respond_to do |format|
         format.html {redirect_to user_reviews_path(@user)}
         format.js

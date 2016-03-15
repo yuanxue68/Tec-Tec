@@ -11,27 +11,27 @@ class Notification < ActiveRecord::Base
           notice_type: "winning auction" )
   end
 
-  def self.notify_higher_bid(auction, old_winner)
+  def self.notify_higher_bid(auction, old_winner, current_user)
     create(user:old_winner,
           notified_by: current_user,
           auction: auction,
           notice_type: "bid over")
   end
 
-  def self.notify_new_bid(auction)
+  def self.notify_new_bid(auction, current_user)
     create(user: auction.owner,
           notified_by: current_user,
           auction: auction,
           notice_type: "new bid") 
   end
 
-  def self.notify_new_review(user)
+  def self.notify_new_review(user, current_user)
     create(user: user,
           notified_by: current_user,
           notice_type: "new review")
   end
 
-  def self.notify_new_comment(auction)
+  def self.notify_new_comment(auction, current_user)
     create(user: auction.owner,
           notified_by: current_user,
           auction: auction,
