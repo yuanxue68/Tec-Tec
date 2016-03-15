@@ -18,7 +18,7 @@ class ReviewsController < ApplicationController
       receiver: @user
     )
     if @user.save
-      create_notification @user
+      Notification.notify_new_review @user
       respond_to do |format|
         format.html {redirect_to user_reviews_path(@user)}
         format.js
@@ -37,10 +37,4 @@ class ReviewsController < ApplicationController
 
   private
   
-  def create_notification(user)
-    Notification.create(user: user,
-                        notified_by: current_user,
-                        notice_type: "new review")
-  end
-
 end

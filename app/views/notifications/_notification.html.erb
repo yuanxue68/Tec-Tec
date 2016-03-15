@@ -20,6 +20,13 @@
 
   <% when "new review" %>
     <%= link_to notification.notified_by.display_name, user_path(notification.notified_by)%> has left a new <%=link_to 'review', user_reviews_path(notification.user)%> for you
+  
+  <%when "winning auction"%>
+    Congratulations! You have won auction  
+    <%= link_to auction_path notification.auction do %>
+      <i class="fa fa-gavel"></i> <%=notification.auction.name %>
+    <% end %>
+
   <% end %>
   
   <span class="pull-right"><%=distance_of_time_in_words_to_now(notification.created_at)%> ago </span>

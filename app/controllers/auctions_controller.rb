@@ -9,6 +9,7 @@ class AuctionsController < ApplicationController
   def create
     @auction = current_user.auctions.build(auction_params)
     if(@auction.save)
+      AuctionEndWorker.perform_at(@auction.end_time, @auction.id)
       flash[:success] = "Auction Successfully Created"
       redirect_to auctions_path
     else

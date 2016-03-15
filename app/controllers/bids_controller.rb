@@ -23,18 +23,11 @@ class BidsController < ApplicationController
   private
   def create_notification(auction, old_winner)
     if auction.owner != current_user
-    Notification.create(user: auction.owner,
-                        notified_by: current_user,
-                        auction: auction,
-                        notice_type: "new bid")
+      Notification.notify_new_bid(auction)
     end
 
     if old_winner && old_winner != current_user
-    Notification.create(user:old_winner,
-                        notified_by: current_user,
-                        auction: auction,
-                        notice_type: "bid over")
-
+      Notification.notify_higher_bid(auction, old_winner)
     end
   end
 
