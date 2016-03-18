@@ -1,0 +1,22 @@
+<div class="modal fade message_modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Messenger</h4>
+      </div>
+
+      <div class="modal-body">
+        <%= form_tag messages_path, method: "post" do %>
+          <div class=form-group">
+            <%= hidden_field_tag :recipient_id, user.id %>
+            <%= label_tag "Body" %>
+            <%= text_area_tag :body, "", class: "form-control", autofocus: true, rows: 6 %>
+          </div>
+        <%= submit_tag "Send", class: "btn btn-info" %>
+        <% end %> 
+      </div>
+	</div>
+  </div>
+</div>

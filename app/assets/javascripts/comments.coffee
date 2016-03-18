@@ -24,4 +24,7 @@ $(document).on "page:change", ->
     $(window).scroll()
   else
     $(window).unbind('scroll')
-      
+     
+  if($(".message-modal-opener").length)
+    $(".message-modal-opener").on 'click', ->
+      $(".message_modal").modal('toggle') 

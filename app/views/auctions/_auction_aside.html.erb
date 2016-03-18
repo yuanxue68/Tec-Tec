@@ -2,6 +2,17 @@
 	<div class="hidden-xs hiden-sm">
   	<%= render partial:'shared/profile_pic', locals:{resource: @auction.owner} %>  
 	</div>
+  
+  <% unless current_user == @auction.owner %>
+    <div class="info-box">
+      <button class="btn btn-info col-md-12 message-modal-opener">
+        <i class="fa fa-envelope"></i> Send Message
+      </button>
+      </br>
+    </div> 
+    <%= render partial:'shared/message_modal', locals: {user: @auction.owner} %>
+  <% end %>
+  
   <div class="info-box">
     <%= link_to user_path(@auction.owner) do %>
       <h3><%=@auction.owner.display_name.capitalize%></h3>
@@ -55,4 +66,5 @@
       <i class="fa fa-check-circle"></i> Place Bid
     <% end %>
   <% end %>
+
 </div>

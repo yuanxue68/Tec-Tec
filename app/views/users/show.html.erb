@@ -8,11 +8,18 @@
     <%= link_to history_user_path(current_user), class:"btn btn-default btn-sm" do %>
       <i class="fa fa-archive"></i> My History
     <% end %>
+  <% else %>
+    <button class="pull-right btn btn-info btn-sm message-modal-opener">
+      <i class="fa fa-envelope"></i> Send Message
+    </button>
+ 
+    <%= render partial:"shared/message_modal", locals: {user: @user} %>
   <% end %>
 
   <%= link_to user_reviews_path(@user), class: "btn btn-default btn-sm" do %>
     <i class="fa fa-commenting-o"></i> User Reviews
   <% end %>
+  
   </br>
   </br>
   <% if current_user == @user %>

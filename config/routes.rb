@@ -14,7 +14,10 @@ Rails.application.routes.draw do
     end
     resources :reviews, only: [:create, :destroy, :index]
     resources :notifications, only: [:index]
-	end
+  end
+
+  resources :conversations, only: [:index, :show]
+  resources :messages, only: [:create]
 
   resources :auctions do
     member do

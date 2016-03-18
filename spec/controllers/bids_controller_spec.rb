@@ -28,6 +28,7 @@ RSpec.describe BidsController, type: :controller do
       allow(@auction).to receive(:place_bid).and_return(true)
       allow(@auction).to receive(:save).and_return(true)
       get :create
+      expect(flash[:success]).to eq("Bid successfully placed")
       expect(response).to have_http_status(:redirect)
     end
     
