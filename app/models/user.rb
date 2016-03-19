@@ -14,8 +14,10 @@ class User < ActiveRecord::Base
   has_many :reviews_written, class_name:'Review', dependent: :destroy, foreign_key: 'giver_id'
   has_many :reviews_received, class_name:'Review', dependent: :destroy, foreign_key: 'receiver_id'
   has_many :notifications, dependent: :destroy
-  has_many :conversations, foreign_key: 'sender_id'
 
+  def conversations
+    Conversation.where("sender_id = ? OR recipient_id = ?", self.id, self.id)
+  end
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

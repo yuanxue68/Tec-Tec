@@ -1,16 +1,13 @@
 <%=link_to conversations_path(page:params[:conversation_page], conversation_id: conversation.id) do%>
-  <div class="row">
+  <div class="row conversation <%=is_active?('conversations', :conversation_id, conversation.id.to_s) %>">
   <div class="col-md-4">
     <div class="thumb thumb-round">
-      <% if other_participant(conversation).picture.url %>
-        <%=image_tag other_participant(conversation).picture.thumb.url %>
-      <% else %>
-        <%=image_tag 'user-thumb.png'%>
-      <% end %>
+      <%=image_tag profile_thumb_url(other_participant(conversation)) %>
     </div>
   </div>
   <div class="col-md-7">
-    <%= other_participant(conversation).display_name %>
+    <div class="name-label">Conversation with</div>
+    <div class="name"><%= other_participant(conversation).display_name %></div>
   </div>
   </div>
 <% end %>

@@ -7,14 +7,8 @@
   <% end %>
 
   <div class="col-md-3 text-center">
-    <% if comment.user.picture.url %>
-      <%= link_to user_path(comment.user), class: "thumb thumb-round" do %>
-        <%= image_tag comment.user.picture.thumb.url %>
-      <% end %>
-    <% else %>
-      <%= link_to user_path(comment.user), class: "thumb thumb-round" do %>
-        <%= image_tag 'user-thumb.png' %>
-      <% end %>
+    <%= link_to user_path(comment.user), class: "thumb thumb-round" do %>
+      <%= image_tag profile_thumb_url(comment.user) %>
     <% end %>
     <div><%=comment.user.display_name.capitalize%></div>
   </div>

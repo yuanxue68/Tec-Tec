@@ -1,3 +1,12 @@
-<div>
-  <%= message.body %>
+<div class="message row <%= 'my-message' unless current_user == message.user %>">
+  <div class="col-md-3 text-center" >
+    <div class="thumb thumb-sm thumb-round">
+      <%= image_tag profile_thumb_url(message.user) %>
+    </div>
+    <div><%= message.user.display_name %></div>
+  </div>
+  <div class="col-md-9">
+    <span><%= message.body %></span>
+    <span class="pull-right"><%= time_ago_in_words(message.user.created_at)%> ago</span>
+  </div>
 </div>

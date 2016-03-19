@@ -8,18 +8,12 @@
 
 
   <div class="col-md-3 text-center">
-    <% if review.giver.picture.url %>
-      <%= link_to user_path(review.giver), class:"thumb thumb-round" do %>
-        <%= image_tag review.giver.picture.thumb.url %>
-      <% end %> 
-    <% else %>
-      <%= link_to user_path(review.giver), class:"thumb thumb-round" do %>
-        <%= image_tag 'user-thumb.png' %>
-      <% end %>
+    <%= link_to user_path(review.giver), class:"thumb thumb-round" do %>
+      <%= image_tag profile_thumb_url(review.giver) %>
+    <% end %> 
     <div><%=review.giver.display_name.capitalize%></div>
-    <% end %>
-
   </div>
+
   <div class="col-md-9 comment-content light-text"> 
     <div><%=time_ago_in_words(review.created_at)%> ago</div>
     <%= review.content%>
