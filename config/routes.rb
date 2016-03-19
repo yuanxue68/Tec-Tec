@@ -7,7 +7,21 @@ Rails.application.routes.draw do
   get '/about', to: 'static_pages#about'
   get '/contact', to: 'static_pages#contact'
 
-  devise_for :users, :controllers => { omniauth_callbacks: "users/omniauth_callbacks", registrations: 'registrations' }
+  #devise_for :users, :controllers => { omniauth_callbacks: "users/omniauth_callbacks", registrations: 'registrations' }
+  
+  devise_for :users, controllers: {omniauth_callbacks: "users/omniauth_callbacks"}, skip: :registrations
+  devise_scope :user do 
+    resource :registration,
+      only: [:new, :create, :edit, :update],
+      path: 'user',
+      path_names: { new: 'sign_up'},
+      controller: 'registrations',
+      as: :user_registration do 
+        get :cancel
+      end
+  end
+
+
   resources :users, only: [:show] do
 		member do
 			get :history
