@@ -2,14 +2,16 @@
 	<div class="hidden-xs hiden-sm">
   	<%= render partial:'shared/profile_pic', locals:{resource: @auction.owner} %>  
 	</div>
-  
+  </br>
+
   <% unless current_user == @auction.owner %>
-    <div class="info-box">
+    <div>
       <button class="btn btn-info col-md-12 message-modal-opener">
         <i class="fa fa-envelope"></i> Send Message
       </button>
-      </br>
     </div> 
+    </br>
+    </br>
     <%= render partial:'shared/message_modal', locals: {user: @auction.owner} %>
   <% end %>
   
