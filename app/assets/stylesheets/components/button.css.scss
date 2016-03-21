@@ -6,3 +6,17 @@
   background-color: #00a8f2;
 	border-color: #00a8f2;
 }
+
+.pagination > .active > a, .pagination > .active > a:hover, .pagination > .active > a:focus,
+.pagination > .active > span,
+.pagination > .active > span:hover,
+.pagination > .active > span:focus,
+.btn-success {
+  background-color: #00ab6b;
+	border-color: #00ab6b;;
+}
+
+
+.btn-round {
+  border-radius: 50px;
+}

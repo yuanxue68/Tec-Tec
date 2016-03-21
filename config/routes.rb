@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   get 'bids/create'
 
   root 'static_pages#home'
-  get '/about', to: 'static_pages#about'
-  get '/contact', to: 'static_pages#contact'
+  #get '/about', to: 'static_pages#about'
+  #get '/contact', to: 'static_pages#contact'
 
   #devise_for :users, :controllers => { omniauth_callbacks: "users/omniauth_callbacks", registrations: 'registrations' }
   

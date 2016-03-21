@@ -10,6 +10,10 @@
   color: #666;
 }
 
+.bright-text {
+  color: #e368d6;
+}
+
 .title {
   font-size: 28px;
   font-weight: 200;
@@ -25,4 +29,14 @@
 
 .thin-text {
   font-weight: 200;
-} 
+}
+
+.block-with-text {
+  margin-top: 20px;
+  margin-bottom: 25px;
+  overflow: hidden;
+  position: relative; 
+  line-height: 1.2em;
+  height: 4.8em; 
+}
+

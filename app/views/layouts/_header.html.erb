@@ -18,7 +18,7 @@
         <ul class="nav navbar-nav navbar-right">
           
           <li class="<%= is_active?('auctions', :action, 'index') %>">
-            <%= link_to auctions_path do%>
+            <%= link_to auctions_path, class:"bright-text" do%>
               <i class="fa fa-compass"></i> Explore
             <% end %>
           </li>
@@ -41,7 +41,10 @@
           <li class="<%= is_active?('conversations', :action, 'index') %>">
             <%= link_to conversations_path do %>
               <i class="fa fa-envelope"></i>
-            <% end %>
+              <% if current_user.unread_message_count && current_user.unread_message_count > 0 %>
+                <span class="badge"><%=current_user.unread_message_count%></span>
+              <% end %> 
+             <% end %>
           </li>
 
           <li class="dropdown">

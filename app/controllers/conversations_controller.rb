@@ -3,6 +3,7 @@ class ConversationsController < ApplicationController
 
   # :( 
   def index
+    current_user.read_all_messages
     @conversations = Conversation
                     .latest_conversations(current_user)
                     .includes(:sender, :recipient)

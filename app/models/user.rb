@@ -58,6 +58,17 @@ class User < ActiveRecord::Base
     notifications.where(read: false).count
   end
 
+  def unread_message_count
+    conversations.joins(:messages)
+      .where('messages.read = ? And messages.user_id != ?', false, self.id).count
+  end
+
+  def read_all_messages
+    Message.joins(:conversation)
+      .where("sender_id = ? OR recipient_id = ?", self.id, self.id)
+      .where('messages.read = ? And messages.user_id != ?', false, self.id).update_all(read: true)
+  end
+
   def is_part_of_convo(conversation_id)
     conversation_id && conversations.exists?(conversation_id)
   end

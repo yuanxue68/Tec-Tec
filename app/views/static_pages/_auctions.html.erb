@@ -1,0 +1,11 @@
+<div class="col-md-10 col-md-offset-1">
+  </br>
+  <h3 class="title"><i class="fa fa-tasks"></i> <%= title %></h3>
+  <div class="divider"></div>
+  <div class="row">
+    <% auctions.each do |auction| %>
+      <%= render partial:'auctions/auction', locals: {auction: auction, column_size: '3'} %>
+    <% end %>
+  </div>
+  <hr> 
+</div>

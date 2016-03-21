@@ -8,13 +8,11 @@
   .timestamp {
     margin-top:10px;
   }
-  
-  .description {
-    height: 20px;
-    overflow:hidden;
-    text-overflow: ellipsis;
+ 
+  &:hover{
+    box-shadow: 0px 0px 10px 5px #888888;
   }
-  
+   
   .user {
     margin-bottom:5px;
   }

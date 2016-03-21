@@ -1,5 +1,6 @@
+<% column_size = '4' if local_assigns[:column_size].nil? %>
 <%=link_to auction do %>
-  <div class="col-md-4 col-sm-6 col-xs-12 col-container">
+  <div class="col-md-<%=column_size%> col-sm-6 col-xs-12 col-container">
     <div id="auction-<%= auction.id %>" class="card">
       <div class="card-image">
         <% if auction.picture? %>
@@ -16,7 +17,7 @@
         <div class="user">
           <span class="label label-warning">Sold By</span> <%= auction.owner.display_name%>
         </div>
-        <div class="description">
+        <div class="block-with-text">
           <% if !auction.description.empty? %>
             <i class="fa fa-gavel"></i>: <%= auction.description %>
           <% else %>
@@ -25,7 +26,7 @@
         </div>
         <div class="timestamp">
           <div>
-            Time Remaining: <span class="dark-text"><%=distance_of_time_in_words_to_now(auction.end_time)%></span>
+            Time Left: <span class="dark-text"><%=distance_of_time_in_words_to_now(auction.end_time)%></span>
           </div>
           <div class="progress">
             <div class="progress-bar progress-bar-success" role="progressbar" style="width: <%= time_passed_in_percent(auction) %>;">

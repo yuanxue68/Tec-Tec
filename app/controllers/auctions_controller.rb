@@ -1,5 +1,5 @@
 class AuctionsController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :destroy]
+  before_action :authenticate_user!, only: [:new,:create, :destroy]
   
   def index
     @auctions = Auction.ordered_search(params[:order], params[:search])
@@ -31,13 +31,20 @@ class AuctionsController < ApplicationController
 
   def history
     @auction = Auction.find(params[:id])
-    @bids = @auction.latest_bids.includes(:user).paginate(page: params[:page]).per_page(25)
+    @bids = @auction
+              .latest_bids
+              .includes(:user)
+              .paginate(page: params[:page]).per_page(25)
     render layout: "auction_layout"
   end
 
   def comments
     @auction = Auction.find(params[:id])
-    @comments = @auction.comments.order(created_at: :desc).includes(:user).paginate(page: params[:page]).per_page(25)
+    @comments = @auction
+                  .comments
+                  .order(created_at: :desc)
+                  .includes(:user)
+                  .paginate(page: params[:page]).per_page(25)
     render layout: "auction_layout"
   end
   

@@ -11,10 +11,12 @@
 @import "components/card";
 @import "auctions";
 
-.container { 
+.container-body { 
   padding-top: 70px;
 }
 
-.unit {
-  background-color: #FFFFFF;
+.container-fluid-body {
+	padding: 0px;
+	padding-top: 50px;
 }
+
