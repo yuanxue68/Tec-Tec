@@ -1,8 +1,8 @@
 <div class="message row <%= 'my-message' unless current_user == message.user %>">
   <div class="col-md-3 text-center" >
-    <div class="thumb thumb-sm thumb-round">
+    <%=link_to user_path(message.user), class:"thumb thumb-sm thumb-round" do %>
       <%= image_tag profile_thumb_url(message.user) %>
-    </div>
+    <% end %>
     <div><%= message.user.display_name %></div>
   </div>
   <div class="col-md-9">
