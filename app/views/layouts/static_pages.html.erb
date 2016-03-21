@@ -10,11 +10,8 @@
 <body>
   <%= render 'layouts/header' %>
 	<div class="container-fluid container-fluid-body">
-		<!--
-		<p class="notice"><%= notice %></p>
-		<p class="alert"><%= alert %></p>
-		-->
-		<%= content_for?(:content) ? yield(:content) : yield %>
+		<%= render 'layouts/flash' %>
+    <%= content_for?(:content) ? yield(:content) : yield %>
 	</div>
   <%= render 'layouts/footer'%>
 </body>
