@@ -68,7 +68,12 @@
     <% else %>
       <div class="collapse navbar-collapse" id="account-setting">
         <ul class="nav navbar-nav navbar-right">
-          <li class="<%= is_active?('devise/registrations', :action, 'new') %>">
+          <li class="<%= is_active?('auctions', :action, 'index') %>">
+            <%= link_to auctions_path, class:"bright-text" do%>
+              <i class="fa fa-compass"></i> Explore
+            <% end %>
+          </li>
+          <li class="<%= is_active?('registrations', :action, 'new') %>">
             <%= link_to "Sign Up", new_user_registration_path %>
           </li>
           <li class="<%= is_active?('devise/sessions', :action, 'new') %>">

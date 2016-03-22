@@ -10,7 +10,7 @@ class MessagesController < ApplicationController
     if @message.save
       flash[:success] = "Message sent successfully"
     else
-      flash[:failure] = "Failed to send message"
+      flash[:danger] = "Failed to send message"
     end
     redirect_to conversations_path
   end
