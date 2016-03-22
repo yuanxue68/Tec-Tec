@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController 
   before_action :authenticate_user!, only: [:create, :destroy]
-  
+  before_action :correct_user, only: [:destroy]
+
   def index
     @user = User.find(params[:user_id])
     @reviews = @user.reviews_received.order(created_at: :desc).includes(:giver).paginate(page:params[:page]).per_page(15)
@@ -37,4 +38,8 @@ class ReviewsController < ApplicationController
 
   private
   
+  def correct_user
+    @review = Review.find(params[:id])
+    redirect_to root_path unless @review.giver == current_user 
+  end 
 end
