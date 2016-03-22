@@ -10,7 +10,11 @@
   <%= form_for @bid, url: {action: "create"} do |f|%>
     <%= render 'shared/error_messages', object: f.object%>
     <%= f.label :bid_amount%>
-    <%= f.text_field :bid_amount, class: "form-control"%>
+    <% if params[:buyout] %>
+      <%= f.text_field :bid_amount, class: "form-control", value: @auction.buyout_price%>
+    <% else %>
+      <%= f.text_field :bid_amount, class: "form-control" %>
+    <% end %>
     <%= button_tag type: "submit", class: 'btn btn-primary btn-sm' do%>
       Bid <i class="fa fa-check-circle-o"></i>
     <% end %>

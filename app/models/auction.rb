@@ -12,12 +12,12 @@ class Auction < ActiveRecord::Base
   scope :order_by_created_at, ->{order(created_at: :desc)}  
   scope :order_by_buyout_price, ->{order(:buyout_price)}
   
-  def self.later_than(time)
-    where("end_time > ?", time)
+  def self.active
+    where("end_time > ? And brought_out = 'f'", Time.now)
   end
  
   def self.expired
-    where("end_time < ?", Time.now)
+    where("end_time < ? OR brought_out = 't'", Time.now)
   end 
 
   def self.search_by_name(name)
@@ -31,12 +31,16 @@ class Auction < ActiveRecord::Base
   def self.ordered_search(order, search)
     case 
     when order == "ending" 
-      later_than(Time.now).search_by_name(search).order_by_ending.includes(:owner)
+      active.search_by_name(search).order_by_ending.includes(:owner)
     when order == "buyout_price"
-      later_than(Time.now).search_by_name(search).order_by_buyout_price.includes(:owner)
+      active.search_by_name(search).order_by_buyout_price.includes(:owner)
     else
-      later_than(Time.now).search_by_name(search).order_by_created_at.includes(:owner)  
+      active.search_by_name(search).order_by_created_at.includes(:owner)  
     end
+  end
+
+  def expired?
+    self.end_time < Time.now or self.brought_out == 't'
   end
 
   def place_bid (bidder, bid_amount)

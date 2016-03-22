@@ -46,12 +46,12 @@ class User < ActiveRecord::Base
   end
 
   def active_auctions
-    auctions.later_than(Time.now)
+    auctions.active
   end
 
   #is there a more rails way??
   def active_bids
-    bids.where('(bids.auction_id, bids.bid_amount) in (select auctions.id, max(bids.bid_amount) from bids, auctions where bids.auction_id = auctions.id group by auctions.id)')
+    bids.where("(bids.auction_id, bids.bid_amount) in (select auctions.id, max(bids.bid_amount) from bids, auctions where bids.auction_id = auctions.id AND auctions.brought_out = 'f' group by auctions.id)")
     .order(created_at: :desc)
   end  
 

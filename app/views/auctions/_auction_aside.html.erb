@@ -4,7 +4,7 @@
 	</div>
   </br>
 
-  <% unless current_user == @auction.owner %>
+  <% if current_user && current_user != @auction.owner %>
     <div>
       <button class="btn btn-info col-md-12 message-modal-opener">
         <i class="fa fa-envelope"></i> Send Message
@@ -24,12 +24,6 @@
     </div>    
   </div>
       
-  <div class="info-box">
-    <h3><%= @auction.starting_price%></h3>
-    <div class="light-text">
-      <i class="fa fa-usd"></i> Starting Price
-    </div>
-  </div>
   <% if @auction.buyout_price %>
     <div class="info-box">
       <h3><%= @auction.buyout_price%></h3>
@@ -37,13 +31,14 @@
         <i class="fa fa-money"></i> Buyout Price
       </div>
     </div>
+    <% if current_user && !@auction.expired? && @auction.owner != current_user %>
+      <%=link_to new_auction_bid_path(@auction, buyout: true), class:"btn btn-success col-md-12" do %>
+        <i class="fa fa-check-circle"></i> Buyout
+      <% end %>
+      </br>
+      </br>
+    <% end %>
   <% end %>
-  <div class="info-box">
-    <h3><%= time_ago_in_words @auction.start_time%></h3>
-    <div class="light-text">
-      <i class="fa fa-history"></i> Time Passed
-    </div>
-  </div>
   <div class="info-box">
     <% if !@auction.bids.last %>
       <h3>$0.00</h3>
@@ -56,14 +51,7 @@
       <i class="fa fa-sort-asc"></i> Highest bid
     </div>
   </div>
-  <div class="info-box">
-    <h3><%= distance_of_time_in_words_to_now @auction.end_time%></h3>
-    <div class="light-text">
-      <i class="fa fa-clock-o"></i> Distance To End Time
-    </div>
-  </div>
-
-  <% if current_user && @auction.end_time >Time.now && @auction.owner != current_user %>
+  <% if current_user && !@auction.expired? && @auction.owner != current_user %>
     <%=link_to new_auction_bid_path(@auction), class:"btn btn-success col-md-12" do %>
       <i class="fa fa-check-circle"></i> Place Bid
     <% end %>

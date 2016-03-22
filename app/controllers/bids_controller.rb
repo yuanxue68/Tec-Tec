@@ -1,16 +1,19 @@
 class BidsController < ApplicationController
   before_action :authenticate_user!
+  before_action :expired_auction, only: [:new, :create]
 
   def new
     @auction = Auction.find(params[:auction_id])
     @last_bid = @auction.bids.last
     @bid = @auction.bids.build
-  end
+   end
 
   def create
-    @auction = Auction.find(params[:auction_id])
     @old_winner = @auction.latest_bid && @auction.latest_bid.user
     @bid = @auction.place_bid(current_user, bid_params[:bid_amount]) 
+    if(@auction.buyout_price && bid_params[:bid_amount].to_f >= @auction.buyout_price)
+      @auction.brought_out = true
+    end
     if(@auction.save)
       create_notification @auction, @old_winner
       flash[:success] = "Bid successfully placed"
@@ -21,6 +24,14 @@ class BidsController < ApplicationController
   end
 
   private
+  def expired_auction
+    @auction = Auction.find(params[:auction_id])
+    if @auction.expired? 
+      flash[:danger] = "Auction has already expired"
+      redirect_to auction_path(@auction)
+    end
+  end
+
   def create_notification(auction, old_winner)
     if auction.owner != current_user
       Notification.notify_new_bid(auction, current_user)

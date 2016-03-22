@@ -1,5 +1,27 @@
 <div class="auction-content">
-   
+  <div class="row text-center">
+    <div class="info-box col-md-4 col-sm-12 col-xs-12">
+      <h3><%= @auction.starting_price%></h3>
+      <div class="light-text">
+        <i class="fa fa-usd"></i> Starting Price
+      </div>
+    </div>
+
+    <div class="info-box col-md-4 col-sm-12 col-xs-12">
+      <h3><%= time_ago_in_words @auction.start_time%></h3>
+      <div class="light-text">
+        <i class="fa fa-history"></i> Time Passed
+      </div>
+    </div>
+    <div class="info-box col-md-4 col-sm-12 col-xs-12">
+      <h3><%= distance_of_time_in_words_to_now @auction.end_time%></h3>
+      <div class="light-text">
+        <i class="fa fa-clock-o"></i> Ends In
+      </div>
+    </div>
+  </div>
+
+  
   <div class="title-sm">Description</div>
   <div class="well">
     <% if @auction.description.empty? %>
@@ -19,7 +41,7 @@
       No Picture Avaliable
     </div>
   <% end %>
-
+  
   <div class="panel panel-info">
     <div class="panel-heading">
       Other Information

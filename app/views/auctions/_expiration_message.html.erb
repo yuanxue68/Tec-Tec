@@ -1,4 +1,4 @@
-<% if @auction.end_time < Time.now %>
+<% if @auction.expired? %>
   <% if @auction.bids.last && @auction.bids.last.user == current_user %>
     <div class="alert alert-success text-center" role="alert">
       <i class="fa fa-thumbs-up"></i> Congratulations! You won this auction!

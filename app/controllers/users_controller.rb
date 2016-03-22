@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @auctions = @user.active_auctions.paginate(page: params[:auction_page], per_page:3)
-    if current_user.id.to_s == params[:id]
+    if current_user && current_user.id.to_s == params[:id]
       @bids = @user.active_bids.includes(:auction).paginate(page: params[:bid_page], per_page:5)
     end
   end
