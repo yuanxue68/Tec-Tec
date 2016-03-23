@@ -31,7 +31,7 @@ gem 'font-awesome-rails', '4.5.0.1'
 gem 'carrierwave', '0.10.0'
 gem 'mini_magick', '4.4.0'
 gem 'fog', '1.37.0'
-gem 'sidekiq' '4.1.1'
+gem 'sidekiq', '4.1.1'
 gem 'faker', '1.6.3'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
