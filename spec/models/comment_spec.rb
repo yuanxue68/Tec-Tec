@@ -1,18 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
-  before :each do
-    @auction = @auction || FactoryGirl.build(:auction)
-    @user = @user || FactoryGirl.build(:user)
+  describe "associations" do
+    it { is_expected.to belong_to :user }
+    it { is_expected.to belong_to :auction }
   end
 
-  it "should be able to save" do
-    @auction.comments.build(user: @user, content: "hey")
-    expect(@auction.comments.last).to be_valid
-  end
-
-  it "should not be valid if there is no content" do
-    @auction.comments.build(user: @user)
-    expect(@auction.comments.last).to_not be_valid
+  describe "validations" do
+    it { is_expected.to validate_presence_of :content }
+    it { is_expected.to validate_presence_of :auction }
+    it { is_expected.to validate_presence_of :user }
   end
 end

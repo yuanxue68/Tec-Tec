@@ -50,7 +50,7 @@ group :development, :test do
 	gem 'byebug'
 	gem 'spring'
   gem 'rspec-rails', '~> 3.4', '>= 3.4.2'
-
+  gem 'shoulda-matchers', '~> 3.1.1'
 end
 
 group :test do

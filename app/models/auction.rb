@@ -64,7 +64,7 @@ class Auction < ActiveRecord::Base
   end
 
   def shorter_than_two_weeks
-    if(end_time > start_time + 2.weeks.to_i)
+    if(start_time  && end_time && end_time > start_time + 2.weeks.to_i)
       errors.add(:end_time, "can not be more than two weeks from now")
     end
   end
