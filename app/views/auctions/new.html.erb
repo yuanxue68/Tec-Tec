@@ -56,8 +56,8 @@
       </div>
 
       <div class="form-group">
-        <%= f.label "End time *"%></br>
-        <%= f.datetime_select :end_time, {ampm: true}, class: "form-control datetime-select"%>
+        <%= f.label "End time (No longer than 2 weeks) *"%></br>
+        <%= f.datetime_select :end_time, {ampm: true, default: 1.days.from_now}, class: "form-control datetime-select" %>
       </div>
       <%= f.submit "create", class: "col-md-2 col-s-12 btn btn-success"%>
   

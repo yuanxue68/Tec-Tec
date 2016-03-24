@@ -1,5 +1,6 @@
 class AuctionsController < ApplicationController
   before_action :authenticate_user!, only: [:new,:create, :destroy]
+  before_action :correct_user, only: [:destroy]
   
   def index
     @auctions = Auction.ordered_search(params[:order], params[:search])
@@ -27,6 +28,9 @@ class AuctionsController < ApplicationController
   end
 
   def destroy
+    @auction.destroy
+    redirect_to auctions_path
+    flash[:success] = "Auction deleted successfully"
   end
 
   def history
@@ -49,6 +53,10 @@ class AuctionsController < ApplicationController
   end
   
   private 
+  def correct_user
+    @auction = Auction.find(params[:id])
+    redirect_to auction_path(@auction) unless @auction.owner == current_user
+  end
   
   def auction_params
     params[:auction][:start_time] = Time.now

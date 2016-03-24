@@ -5,7 +5,7 @@ class Auction < ActiveRecord::Base
   has_many :notifications, dependent: :destroy
 
   validates_presence_of :owner, :name, :start_time, :end_time
-  validate :picture_size, :end_time_in_future
+  validate :picture_size, :end_time_in_future, :shorter_than_two_weeks
   mount_uploader :picture, AuctionUploader
 
   scope :order_by_ending, ->{order(:end_time)}
@@ -60,6 +60,12 @@ class Auction < ActiveRecord::Base
   def end_time_in_future
     if(!end_time||end_time <= Time.now)
       errors.add(:end_time, "can not be in the past")
+    end
+  end
+
+  def shorter_than_two_weeks
+    if(end_time > start_time + 2.weeks.to_i)
+      errors.add(:end_time, "can not be more than two weeks from now")
     end
   end
 

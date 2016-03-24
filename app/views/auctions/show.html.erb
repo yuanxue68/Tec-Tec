@@ -57,12 +57,17 @@
       </tr>
       <tr>
         <td>Start Time:</td>
-        <td><%= @auction.start_time.in_time_zone("EST").strftime('Date: %Y-%m-%d, Time: %H-%M') %></td>
+        <td><%= @auction.start_time.strftime('Date: %Y-%m-%d, Time: %H:%M') %></td>
       </tr>
       <tr>
         <td>End Time:</td>
-        <td><%= @auction.end_time.in_time_zone("EST").strftime('Date: %Y-%m-%d, Time: %H-%M') %></td>
+        <td><%= @auction.end_time.strftime('Date: %Y-%m-%d, Time: %H:%M') %></td>
       </tr>
     </table>
   </div>
-  </div>
+  <% if current_user == @auction.owner %>
+    <%= button_to "Delete", auction_path(@auction), method: :delete, class: "btn btn-danger btn-sm col-md-2 pull-right" %> 
+  <% end %>
+  </br> 
+  </br> 
+</div>
