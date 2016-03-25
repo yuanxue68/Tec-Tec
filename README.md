@@ -1,5 +1,6 @@
 # Tec Tec
-site for auctioning used book
+Site for auctioning used books
+[Demo on free tier Heroku](http://floating-mesa-3668.herokuapp.com/) 
 
 ### How to run it on your local machine
 ######After you clone the repository:
@@ -30,9 +31,9 @@ ActionMailer::Base.smtp_settings = {
 
 Start the server on port 3000
 ```ruby
-redis-server #start up redis
-rails server #start up rails server
-bundle exec sidekiq #start up sidekiq
+redis-server         #start up redis
+rails server         #start up rails server
+bundle exec sidekiq  #start up sidekiq
 ```
 
 ###Build Status
