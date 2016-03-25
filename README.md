@@ -1,4 +1,4 @@
-# Tec Tec (IN PROGRESS)
+# Tec Tec
 site for auctioning used book
 
 ### How to run it on your local machine
@@ -14,10 +14,9 @@ Install all the required gems
 Bundle install
 ```
 
-Create setup_mail.rb in config/initializers and add the following lines to setup_mail.rb:
+add the following lines in environment.rb:
 
 ```ruby
-ActionMailer::Base.delivery_method = :smtp
 ActionMailer::Base.smtp_settings = {
 	address:'smtp.sendgrid.net',
 	port:'587',
@@ -31,7 +30,9 @@ ActionMailer::Base.smtp_settings = {
 
 Start the server on port 3000
 ```ruby
-rails server
+redis-server #start up redis
+rails server #start up rails server
+bundle exec sidekiq #start up sidekiq
 ```
 
 ###Build Status
